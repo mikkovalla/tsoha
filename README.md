@@ -5,6 +5,11 @@ tsoha-tietokantasovellus
 Aiheena on asukastietokanta taloyhtiön asukastoimikunnan käyttöön.
 ------
 
-2. [Dokumentaatio](https://github.com/mikkovalla/tsoha/blob/master/doc/Johdanto.pdf)
+2. Dokumentaatio
+[Dokumentaatio](https://github.com/mikkovalla/tsoha/blob/master/doc/Johdanto.pdf)
 
 ----
+3. Ohjelma
+tulossa....
+
+---
