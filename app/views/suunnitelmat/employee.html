@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+    <form id="update_form_employee">
+        <fieldset>
+            <legend>Päivitä tietosi</legend>
+            <p>
+                <label for="first_name">Etunimi</label>
+                <input id="first_name" name="first_name" type="text"/>
+            </p>
+            <p>
+                <label for="last_name">Sukunimi</label>
+                <input id="last_name" name="last_name" type="text"/>
+            </p>
+            <p>
+                <label for="email">Sähköposti</label>
+                <input id="email" name="email" type="email"/>
+            </p>
+            <p>
+                <label for="username">Käyttäjätunnus</label>
+                <input id="username" name="username" type="text"/>
+            </p>
+            <p>
+                <label for="password">Salasana</label>
+                <input id="password" name="password" type="password"/>
+            </p>
+            <p>
+                <label for="password2">Salasana uudelleen</label>
+                <input id="password2" name="password2" type="password"/>
+            </p>
+            <p>
+                <label for="employee_description">Esittely</label>
+                <textarea id="employee_description" name="employee_description" rows="8" cols="40"></textarea>
+            </p>
+            <p>
+                <input type="button" name="update" value="Päivitä" method="post" class="large blue">
+            </p>
+        </fieldset>
+    </form>
+    <div class="col_12 column">
+        <h5>Hakemani duunit</h5>
+        <ul id="listings">
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        TäysPäivä</span>
+                </div>
+                <div class="description">
+                    <h5>Graafinen suunnittelija (Espoo)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                        Lisää...</a>
+                </div>
+            </li>
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        TäysPäivä</span>
+                </div>
+                <div class="description">
+                    <h5>
+                        Java osaaja (Helsinki)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                        Lisää...</a>
+                </div>
+            </li>
+            <li>
+                <div class="type">
+                    <span class="red">OsaAika</span>
+                </div>
+                <div class="description">
+                    <h5>iOS harjoittelija (Oulu)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">Lisää...</a>
+                </div>
+            </li>
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        TäysPäivä</span>
+                </div>
+                <div class="description">
+                    <h5>NodeJs guru (Tampere)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                        Lisää...</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
