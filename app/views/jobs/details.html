@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>Graafinen Suunnitelija</h3>
+    <ul>
+        <li>
+            <strong>Yritys:</strong>
+            JokuLafka Oy</li>
+        <li>
+            <strong>Sijainti:</strong>
+            Espoo</li>
+        <li>
+            <strong>Job Type:</strong>
+            Täys päivä</li>
+        <li>
+            <strong>Työnkuvaus:</strong>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus risus at dapibus malesuada. Vestibulum euismod, velit sit amet tempor ornare, nulla augue mattis mi, nec ultricies dolor augue nec lectus. Integer bibendum enim ipsum, at
+                eleifend nisl elementum sit amet. Etiam eget magna et nunc ultrices suscipit. Duis a ligula vel nisi auctor laoreet. Morbi varius suscipit purus, sed pretium nisl sagittis id. Aliquam vel nulla tempor, luctus quam nec, egestas sem. Nulla nulla ante,
+                faucibus fringilla blandit non, porttitor at eros.</p>
+            <p>Cras luctus cursus pretium. Fusce rhoncus tortor at lectus dignissim, sed dignissim enim euismod. Pellentesque venenatis lacus diam. Nulla aliquam turpis vel lorem viverra consequat. Curabitur vitae vehicula lacus. Fusce quis imperdiet tortor.
+                Fusce enim massa, tincidunt vel lobortis non, mattis quis turpis. Nam lobortis, lectus vitae iaculis bibendum, felis nulla consectetur leo, nec volutpat orci elit ut lorem. Nunc sagittis mauris quis tellus ullamcorper facilisis. Sed volutpat lacus in
+                gravida condimentum. Maecenas sit amet massa vel neque suscipit porta. In luctus odio ante, a scelerisque tellus imperdiet id. Nunc in mollis lectus. Nam lobortis dui lorem, nec lacinia erat pellentesque non. In mattis eget massa sit amet elementum.</p>
+        </li>
+        <li>
+            <strong>Yritys esittely:</strong>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus risus at dapibus malesuada. Vestibulum euismod, velit sit amet tempor ornare, nulla augue mattis mi, nec ultricies dolor augue nec lectus. Integer bibendum enim ipsum, at
+                eleifend nisl elementum sit amet. Etiam eget magna et nunc ultrices suscipit. Duis a ligula vel nisi auctor laoreet. Morbi varius suscipit purus, sed pretium nisl sagittis id. Aliquam vel nulla tempor, luctus quam nec, egestas sem. Nulla nulla ante,
+                faucibus fringilla blandit non, porttitor at eros.</p>
+        </li>
+        <li>
+            <strong>Lähetä meili:</strong>
+            <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">joku@jokulafka.fi</a>
+        </li>
+        <li>
+            <!--show button for employee session -->
+            <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
+        </li>
+        <li class="right">
+            <!-- show button for employer session -->
+            <button class="large red" type="button" name="destroy_job" method="post">Poista</button>
+        </li>
+    </ul>
+    <p>
+        <a href="jobs.html">Takaisin selailemaan...</a>
+    </p>
+    <!--Employer session view show applicants-->
+    <div class="col_12 column">
+        <h5>Hakijat</h5>
+        <ul>
+            <li>
+                <strong>Nimi:</strong>
+                Etunimi Sukunimi</li>
+            <li>
+                <strong>Esittely:</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus risus at dapibus malesuada. Vestibulum euismod, velit sit amet tempor ornare, nulla augue mattis mi, nec ultricies dolor augue nec lectus. Integer bibendum enim ipsum.</p>
+            </li>
+            <li>
+                <strong>Lähetä meili:</strong>
+                <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">etunimisukunimi@moikkamoi.fi</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

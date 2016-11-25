@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+    <form id="add_job_form_employer">
+        <fieldset>
+            <legend>Lisää duuni</legend>
+            <p>
+                <label for="job_name">Duunin nimi</label>
+                <input id="job_name" name="job_name" type="text"/>
+            </p>
+            <p>
+                <label for="job_type">Duunin tyyppi</label>
+                <select id="job_type" name="">
+                    <option>Valitse</option>
+                    <option value="fulltime">Täys päivä</option>
+                    <option value="parttime">Osa aika</option>
+                    <option value="freelancer">Freelance</option>
+                </select>
+            </p>
+            <p>
+                <label for="area_select">Missä duuni sijaitsee</label>
+                <select id="area_select" name="">
+                    <option>Valitse alue</option>
+                    <option value="espoo">Espoo</option>
+                    <option value="helsinki">Helsinki</option>
+                    <option value="vantaa">Vantaa</option>
+                    <option value="turku">Turku</option>
+                    <option value="lappeenranta">Lappeenranta</option>
+                    <option value="tampere">Tampere</option>
+                    <option value="jyvaskyla">Jyväskylä</option>
+                    <option value="oulu">Oulu</option>
+                </select>
+            </p>
+            <p>
+                <label for="category_select">Mikä ala</label>
+                <select id="category_select" name="">
+                    <option>Valitse ala</option>
+                    <option>Front-end devaaja</option>
+                    <option>Back-end devaaja</option>
+                    <option>UI designeri</option>
+                    <option>Fullstack guru</option>
+                    <option>Pelin rakentaja</option>
+                    <option>iOS / Android / Mobile osaaja</option>
+                    <option>Wordpress / Magento / Joomla / ECommerce häkkääjä</option>
+                </select>
+            </p>
+            <p>
+                <label for="job_description">Duunin kuvaus</label>
+                <textarea id="job_description" name="job_description"></textarea>
+            </p>
+            <p>
+                <input class="blue" type="submit" value="Lisää duuni" method="post" action="{{base_path}}/jobs"/>
+            </p>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -16,42 +16,34 @@
 
       public static function addjob()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/addjob.html');
+          View::make('suunnitelmat/addjob.html');
       }
       public static function details()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/details.html');
+          View::make('suunnitelmat/details.html');
       }
       public static function employee()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/employee.html');
+          View::make('suunnitelmat/employee.html');
       }
       public static function employer()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/employer.html');
+          View::make('suunnitelmat/employer.html');
       }
       public static function jobs()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/jobs.html');
+          View::make('suunnitelmat/jobs.html');
       }
       public static function login()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/login.html');
+          View::make('suunnitelmat/login.html');
       }
       public static function register()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/register.html');
+          View::make('suunnitelmat/register.html');
       }
       public static function updatejob()
       {
-          // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('suunnitelmat/updatejob.html');
+          View::make('suunnitelmat/updatejob.html');
       }
   }

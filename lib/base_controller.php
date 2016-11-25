@@ -1,15 +1,42 @@
 <?php
 
-  class BaseController{
+  class BaseController
+  {
+      public static function get_employee_logged_in()
+      {
+          if (isset($_SESSION['employee'])) {
+              $employee_id = $_SESSION['employee'];
+              $employee = Employee::find($employee_id);
 
-    public static function get_user_logged_in(){
-      // Toteuta kirjautuneen käyttäjän haku tähän
-      return null;
-    }
+              return $employee;
+          }
 
-    public static function check_logged_in(){
-      // Toteuta kirjautumisen tarkistus tähän.
-      // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
-    }
+          return;
+      }
+
+      public static function get_employer_logged_in()
+      {
+          if (isset($_SESSION['employer'])) {
+              $employer_id = $_SESSION['employer'];
+              $employer = Employer::find($employer_id);
+
+              return $employer;
+          }
+
+          return;
+      }
+
+      public static function check_logged_in_employee()
+      {
+          if (!isset($_SESSION['employee'])) {
+              Redirect::to('/login_employee', array('error' => 'Kirjaudu sisään!'));
+          }
+      }
+      public static function check_logged_in_employer()
+      {
+          if (!isset($_SESSION['employer'])) {
+              Redirect::to('/login_employer', array('error' => 'Kirjaudu sisään!'));
+          }
+      }
 
   }

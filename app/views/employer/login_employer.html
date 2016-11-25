@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col_6 column">
+        <form id="login_form_employer">
+            <fieldset>
+                <legend>Duunin tarjoaja kirjaudu</legend>
+                <p>
+                    <label for="username_employer">Käyttäjätunnus</label>
+                    <input id="username_employer" name="username_employer" type="text"/>
+                </p>
+                <p>
+                    <label for="password_employer">Salasana</label>
+                    <input id="password_employer" name="password_employer" type="password"/>
+                </p>
+                <p>
+                    <input class="green" type="submit" value="Lähetä" method="post"/>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

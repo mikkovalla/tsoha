@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+    <form id="update_form_employer">
+        <fieldset>
+            <legend>Muuta tietojasi</legend>
+            <p>
+                <label for="company">Yrityksen nimi</label>
+                <input id="company" name="company" type="text"/>
+            </p>
+            <p>
+                <label for="email_company">Sähköposti</label>
+                <input id="email_company" name="email_company" type="email"/>
+            </p>
+            <p>
+                <label for="username_company">Käyttäjätunnus</label>
+                <input id="username_company" name="username_company" type="text"/>
+            </p>
+            <p>
+                <label for="password_company">Salasana</label>
+                <input id="password_company" name="password_company" type="password"/>
+            </p>
+            <p>
+                <label for="password2_company">Salasana uudelleen</label>
+                <input id="password2_company" name="password2_company" type="password"/>
+            </p>
+            <p>
+                <label for="company_description">Yritys esittely</label>
+                <textarea id="company_description" name="company_description" rows="8" cols="40"></textarea>
+            </p>
+            <p>
+                <input type="button" name="update" value="Päivitä" method="post" class="large blue">
+                <p class="right">
+                    Tästä voit poistaa kaikki tietosi
+                    <input type="button" name="delete" value="Poista" method="post" class="large red">
+                </p>
+            </p>
+        </fieldset>
+    </form>
+    <div class="col_12 column">
+        <h5>Lisäämäni duunit</h5>
+        <ul id="listings">
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        TäysPäivä</span>
+                </div>
+                <div class="description">
+                    <h5>Graafinen suunnittelija (Espoo)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                        Lisää...</a>
+                    <p>
+                        <input type="button" name="delete" value="Poista" method="post" class="orange">
+                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        TäysPäivä</span>
+                </div>
+                <div class="description">
+                    <h5>
+                        Java osaaja (Helsinki)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                        Lisää...</a>
+                    <p>
+                        <input type="button" name="delete" value="Poista" method="post" class="orange">
+                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="type">
+                    <span class="red">OsaAika</span>
+                </div>
+                <div class="description">
+                    <h5>iOS harjoittelija (Oulu)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">Lisää...</a>
+                    <p>
+                        <input type="button" name="delete" value="Poista" method="post" class="orange">
+                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        TäysPäivä</span>
+                </div>
+                <div class="description">
+                    <h5>NodeJs guru (Tampere)</h5>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                        Lisää...</a>
+                    <p>
+                        <input type="button" name="delete" value="Poista" method="post" class="orange">
+                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
