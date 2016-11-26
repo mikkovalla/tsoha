@@ -12,6 +12,7 @@ class ComposerStaticInitcc17a8cac0ff2d40e1083039d71fe6cc
         'DB' => __DIR__ . '/../..' . '/lib/database.php',
         'DatabaseConfig' => __DIR__ . '/../..' . '/config/database.php',
         'HelloWorldController' => __DIR__ . '/../..' . '/app/controllers/hello_world_controller.php',
+        'JobsController' => __DIR__ . '/../..' . '/app/controllers/jobs_controller.php',
         'Redirect' => __DIR__ . '/../..' . '/lib/redirect.php',
         'View' => __DIR__ . '/../..' . '/lib/view.php',
     );

@@ -11,6 +11,7 @@ return array(
     'DB' => $baseDir . '/lib/database.php',
     'DatabaseConfig' => $baseDir . '/config/database.php',
     'HelloWorldController' => $baseDir . '/app/controllers/hello_world_controller.php',
+    'JobsController' => $baseDir . '/app/controllers/jobs_controller.php',
     'Redirect' => $baseDir . '/lib/redirect.php',
     'View' => $baseDir . '/lib/view.php',
 );
