@@ -34,9 +34,9 @@ CREATE TABLE Employee (
 
 CREATE TABLE Jobs (
   id SERIAL PRIMARY KEY,
-  category_id INTEGER REFERENCES Categories(Categories.id),
-  employer_id INTEGER REFERENCES Employer(Employer.id) ON UPDATE CASCADE ON DELETE CASCADE,
-  type_id INTEGER REFERENCES Types(Types.id),
+  category_id INTEGER REFERENCES Categories(id),
+  employer_id INTEGER REFERENCES Employer(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  type_id INTEGER REFERENCES Types(id),
   job_name varchar(100) NOT NULL,
   description text NOT NULL,
   area varchar(100) NOT NULL,

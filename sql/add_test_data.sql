@@ -1,5 +1,5 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
-INSERT INTO Categories (`id`, `name`) VALUES
+INSERT INTO Categories (id, name) VALUES
 ('Front-end devaaja'),
 ('Back-end devaaja'),
 ('UI designeri'),
