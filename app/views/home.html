@@ -1,18 +1,21 @@
-{% extends "base.html" %} {% block content %}
-<h3>Tälläsiä olis tällä hetkellä tarjolla</h3>
-<ul id="listings">
+{% extends "base.html" %}
+{% block content %}
+    <h3>Tälläsiä olis tällä hetkellä tarjolla</h3>
     {% for job in jobs %}
-    <li>
-        <div class="type">
-            <span class="blue">
-                    {{job.type_id}}</span>
-        </div>
-        <div class="description">
-            <h5>{{job.job_name}} ({{job.area}})</h5> {{job.description}}
-            <a href="{{base_path}}/jobs/{{job.id}}">
-                    Lisää...</a>
-        </div>
-    </li>
-  {% endfor %}f
-</ul>
+        <ul id="listings">
+            <li>
+                <div class="type">
+                    <span class="blue">
+                        {{job.type_id}}</span>
+                </div>
+                <div class="description">
+                    <h5>{{job.job_name}}
+                        ({{job.area}})</h5>
+                    {{job.description}}
+                    <a href="{{base_path}}/jobs/{{job.id}}">
+                        Lisää...</a>
+                </div>
+            </li>
+        </ul>
+    {% endfor %}
 {% endblock %}

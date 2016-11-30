@@ -8,7 +8,7 @@ class JobsController extends BaseController
     public static function list()
     {
         $jobs = Jobs::all();
-        View::make('jobs/home.html', array('jobs' => $jobs));
+        View::make('home.html', array('jobs' => $jobs));
     }
 
     public static function addjob()

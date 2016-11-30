@@ -5,17 +5,6 @@ CREATE TABLE Categories (
   name varchar(100) NOT NULL
 );
 
-CREATE TABLE Jobs (
-  id SERIAL PRIMARY KEY,
-  category_id INTEGER REFERENCES Categories(id),
-  employer_id INTEGER REFERENCES Employer(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  type_id INTEGER REFERENCES Types(id),
-  job_name varchar(100) NOT NULL,
-  description text NOT NULL,
-  area varchar(100) NOT NULL,
-  created DATE
-);
-
 CREATE TABLE Types (
   id SERIAL PRIMARY KEY,
   name varchar(100) NOT NULL,
@@ -43,8 +32,19 @@ CREATE TABLE Employee (
   created DATE
 );
 
+CREATE TABLE Jobs (
+  id SERIAL PRIMARY KEY,
+  category_id INTEGER REFERENCES Categories (id),
+  employer_id INTEGER REFERENCES Employer (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  type_id INTEGER REFERENCES Types (id),
+  job_name varchar(100) NOT NULL,
+  description text NOT NULL,
+  area varchar(100) NOT NULL,
+  created DATE
+);
+
 CREATE TABLE Employee_Jobs_Apply (
-id PRIMARY KEY (job_id, employee_id),
-job_id INTEGER REFERENCES Jobs(id) ON UPDATE CASCADE ON DELETE CASCADE,
-employee_id INTEGER REFERENCES Employee(id) ON UPDATE CASCADE ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+job_id INTEGER REFERENCES Jobs (id) ON UPDATE CASCADE ON DELETE CASCADE,
+employee_id INTEGER REFERENCES Employee (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
