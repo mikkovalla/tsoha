@@ -24,6 +24,7 @@ class JobsController extends BaseController
 
     public static function details($id)
     {
-        # code...
+      $job = Jobs::find($id);
+      View::make('jobs/details.html', array('jobs' => $job));
     }
 }

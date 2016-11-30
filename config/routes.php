@@ -12,8 +12,8 @@
     JobsController::addjob();
   });
 
-  $routes->get('/details', function () {
-    JobsController::details();
+  $routes->get('/jobs/:id', function ($id) {
+    JobsController::details($id);
   });
 
   $routes->get('/employee', function () {
