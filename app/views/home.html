@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
     <h3>Tälläsiä olis tällä hetkellä tarjolla</h3>
-    {% for job in jobs %}
-        <ul id="listings">
+    <ul id="listings">
+        {% for job in jobs %}
             <li>
                 <div class="type">
                     <span class="blue">
-                        {{job.type_id}}</span>
+                        {{job.type_id.name}}</span>
                 </div>
                 <div class="description">
                     <h5>{{job.job_name}}
@@ -16,6 +16,6 @@
                         Lisää...</a>
                 </div>
             </li>
-        </ul>
-    {% endfor %}
+        {% endfor %}
+    </ul>
 {% endblock %}

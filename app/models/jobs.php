@@ -17,7 +17,7 @@ class Jobs extends BaseModel
         $jobs = array();
 
         foreach ($rows as $row) {
-            $jobs[] = new Job(array(
+            $jobs[] = new Jobs(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -39,7 +39,7 @@ class Jobs extends BaseModel
         $row = $query->fetch();
 
         if ($row) {
-            $jobs[] = new Job(array(
+            $jobs[] = new Jobs(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -73,7 +73,7 @@ class Jobs extends BaseModel
         $jobs = array();
 
         foreach ($rows as $row) {
-            $jobs[] = new Job(array(
+            $jobs[] = new Jobs(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -88,7 +88,7 @@ class Jobs extends BaseModel
         return $jobs;
     }
 
-    public function newJob()
+    public function newJob($employer_id)
     {
         # code...
     }

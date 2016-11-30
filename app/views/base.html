@@ -7,7 +7,6 @@
 
         <title>
             {% block title %}
-                DuuniHaKuRi | Duunia Kaikille
             {% endblock %}
         </title>
 
@@ -25,14 +24,14 @@
             <header>
                 <div class="col_6 column">
                     <h1>
-                        <a href="{{base_path}}">
+                        <a href="{{base_path}}/home">
                             <strong>Duuni</strong>HaKuRi</a>
                     </h1>
                 </div>
                 <div class="col_6 column right">
                     <form id="add_job">
                         <button class="large blue">
-                            <a href="{{base_path}}" id="addjob_button">Lisää Duuni</a>
+                            <a href="{{base_path}}/addjob" id="addjob_button">Lisää Duuni</a>
                         </button>
                     </form>
                 </div>
@@ -42,33 +41,33 @@
                 <!-- Menu palkki -->
                 <ul class="menu">
                     <li class="current">
-                        <a href="{{base_path}}">
+                        <a href="{{base_path}}/home">
                             Koti</a>
                     </li>
                     <li>
-                        <a href="{{base_path}}">Tsekkaa Duunit</a>
+                        <a href="{{base_path}}/jobs">Tsekkaa Duunit</a>
                     </li>
                     <li class="right">
-                      <a href="{{base_path}}">
+                      <a href="{{base_path}}/login_employee">
                           Kirjaudu Hakija</a>
                   </li>
                   <li class="right">
-                      <a href="{{base_path}}">
+                      <a href="{{base_path}}/login_employer">
                           Kirjaudu Tarjoaja</a>
                   </li>
                   <li class="right">
-                      <a href="r{{base_path}}">
+                      <a href="r{{base_path}}/register_employee">
                           Rekisteröidy Hakija</a>
                   </li>
                   <li class="right">
-                      <a href="{{base_path}}">
+                      <a href="{{base_path}}/register_employer">
                           Rekisteröidy Tarjoaja</a>
                   </li>
                 </ul>
             </div>
 
             <div id="search_area" class="col_12 column">
-                <form class="horizontal" method="post" action="#">
+                <form class="horizontal" method="post" action="">
                     <input id="keywords" type="text" placeholder="Mitä duunia haetaan?"/>
                     <select id="area_select">
                         <option>Mistä päin?</option>

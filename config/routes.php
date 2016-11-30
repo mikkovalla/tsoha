@@ -1,60 +1,49 @@
 <?php
 
   $routes->get('/', function () {
-    HelloWorldController::index();
-    #JobsController
+    JobsController::index();
   });
 
   $routes->get('/hiekkalaatikko', function () {
     HelloWorldController::sandbox();
   });
 
-  $routes->post('jobs/addjob', function () {
-    HelloWorldController::addjob();
-    #JobsController
+  $routes->post('/addjob', function () {
+    JobsController::addjob();
   });
 
   $routes->get('/details', function () {
     JobsController::details();
-    #JobsController
   });
 
   $routes->get('/employee', function () {
-    HelloWorldController::employee();
-    #EmployeeController
+    EmployeeController::employee();
   });
 
   $routes->get('/employer', function () {
-    HelloWorldController::employer();
-    #EmployeeController
+    EmployerController::employer();
   });
 
   $routes->get('/jobs', function () {
-    HelloWorldController::jobs();
-    #JobsController
+    JobsController::jobs();
   });
 
   $routes->get('/login_employee', function () {
-    HelloWorldController::login_employee();
-    #EmployeeController
+    EmployeeController::login_employee();
   });
 
   $routes->get('/login_employer', function () {
-    HelloWorldController::login_employer();
-    #EmployerController
+    EmployerController::login_employer();
   });
 
   $routes->get('/register_employee', function () {
-    HelloWorldController::register_employee();
-    #EmployeeController
+    EmployeeController::register_employee();
   });
 
   $routes->get('/register_employer', function () {
-    HelloWorldController::register_employer();
-    #EmployerController
+    EmployerController::register_employer();
   });
 
   $routes->get('/updatejob', function () {
-    HelloWorldController::updatejob();
-    #JobsController
+    JobsController::updatejob();
   });

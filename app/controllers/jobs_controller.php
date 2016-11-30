@@ -1,11 +1,11 @@
 <?php
 
-/**
- *
- */
+require 'app/models/jobs.php';
+
+
 class JobsController extends BaseController
 {
-    public static function list()
+    public static function index()
     {
         $jobs = Jobs::all();
         View::make('home.html', array('jobs' => $jobs));
