@@ -32,6 +32,28 @@ class Employer extends BaseModel
         return $employer;
     }
 
+    public static function find($employer_id)
+    {
+        $query = DB::connection()->prepare('SELECT * FROM Employer WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $employer_id));
+        $row = $query->fetch();
+        if ($row) {
+            $employer[] = new self(array(
+            'id' => $row['id'],
+            'company_name' => $row['company_name'],
+            'email' => $row['email'],
+            'username' => $row['username'],
+            'password' => $row['password'],
+            'company_description' => $row['company_description'],
+            'created' => $row['created'],
+    ));
+
+            return $employer;
+        }
+
+        return;
+    }
+
     public function newEmployer()
     {
         $query = DB::connection()->prepare(

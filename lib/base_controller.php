@@ -29,14 +29,13 @@
       public static function check_logged_in_employee()
       {
           if (!isset($_SESSION['employee'])) {
-              Redirect::to('/login_employee', array('error' => 'Kirjaudu sisään!'));
+              Redirect::to('employee/login_employee', array('error' => 'Kirjaudu sisään!'));
           }
       }
       public static function check_logged_in_employer()
       {
           if (!isset($_SESSION['employer'])) {
-              Redirect::to('/login_employer', array('error' => 'Kirjaudu sisään!'));
+              Redirect::to('employer/login_employer', array('error' => 'Kirjaudu sisään!'));
           }
       }
-
   }
