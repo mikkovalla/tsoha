@@ -123,7 +123,7 @@ class Employer extends BaseModel
             return false;
         }
     }
-    public static function auth($username, $password)
+    public function auth($username, $password)
     {
         $query = DB::connection()->prepare(
         'SELECT * FROM Employer

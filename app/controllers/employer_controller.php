@@ -8,16 +8,18 @@ class EmployerController extends BaseController
 {
     public static function login()
     {
-        View::make('employer/login_employer.html');
+        View::make('/employer/login_employer.html');
     }
     public static function handle_login()
     {
         $params = $_POST;
+        $username = $params['username'];
+        $password = $params['password'];
 
-        $employer = Employer::auth($params['username'], $params['password']);
+        $employer = Employer::auth($username, $password);
 
         if (!$employer) {
-            View::make('employer/login_employer.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+            View::make('/employer/login_employer.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         } else {
             #Kint::dump($employer);
             $_SESSION['employer'] = $employer->id;
@@ -27,7 +29,7 @@ class EmployerController extends BaseController
 
     public static function register()
     {
-        View::make('employer/register_employer.html');
+        View::make('/employer/register_employer.html');
     }
 
     public static function handle_register()
@@ -44,7 +46,7 @@ class EmployerController extends BaseController
         ));
             $employer->newEmployer();
 
-            Redirect::to('employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään '.$employer->name.'!'));
+            Redirect::to('/employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään '.$employer->name.'!'));
         }
     }
 }
