@@ -16,16 +16,16 @@
     JobsController::details($id);
   });
 
-  $routes->get('/employee', function () {
-    EmployeeController::employee();
+  $routes->get('/employee/:id', function ($id) {
+    EmployeeController::employee($id);
   });
 
-  $routes->get('/employer', function () {
-    EmployerController::employer();
+  $routes->get('/employer/:id', function ($id) {
+    EmployerController::employer($id);
   });
 
   $routes->get('/jobs', function () {
-    JobsController::jobs();
+    JobsController::index();
   });
 
   $routes->get('/login_employee', function () {
@@ -33,15 +33,22 @@
   });
 
   $routes->get('/login_employer', function () {
-    EmployerController::login_employer();
+    EmployerController::login();
+  });
+  $routes->post('/login_employer', function () {
+    EmployerController::handle_login();
   });
 
   $routes->get('/register_employee', function () {
     EmployeeController::register_employee();
   });
 
+  $routes->post('/register_employer', function () {
+  EmployerController::handle_register();
+  });
+
   $routes->get('/register_employer', function () {
-    EmployerController::register_employer();
+    EmployerController::register();
   });
 
   $routes->get('/updatejob', function () {
