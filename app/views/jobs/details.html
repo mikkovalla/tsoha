@@ -3,35 +3,44 @@
     {% for job in jobs %}
         <h3>{{job.job_name}}</h3>
         <ul>
-            <li>
-                <strong>Yritys:</strong>
-                {{job.employer_id.company_name}}</li>
-            <li>
-                <strong>Sijainti:</strong>
-                {{job.area}}</li>
-            <li>
-                <strong>Job Type:</strong>
-                {{job.type_id.name}}</li>
-            <li>
-                <strong>Työnkuvaus:</strong>
-                {{job.description}}
-            </li>
-            <li>
-                <strong>Yritys esittely:</strong>
-                <p>{{job.employer_id.company_description}}</p>
-            </li>
-            <li>
-                <strong>Lähetä meili:</strong>
-                <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">{{job.employer_id.email}}</a>
-            </li>
-            <li>
-                <!--show button for employee session -->
-                <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
-            </li>
-            <li class="right">
-                <!-- show button for employer session -->
-                <button class="large red" type="button" name="destroy_job" method="post">Poista</button>
-            </li>
+            {% for emp in employers %}
+                {% if job.employer_id == emp.id %}
+                    <li>
+                        <strong>Yritys:</strong>
+                        {{emp.company_name}}
+                    </li>
+                    <li>
+                        <strong>Sijainti:</strong>
+                        {{job.area}}</li>
+                    <li>
+                        {% for type in types %}
+                            {% if job.type_id == type.id %}
+                                <strong>Job Type:</strong>
+                                {{type.name}}</li>
+                        {% endif %}
+                    {% endfor %}
+                    <li>
+                        <strong>Työnkuvaus:</strong>
+                        {{job.description}}
+                    </li>
+                    <li>
+                        <strong>Yritys esittely:</strong>
+                        <p>{{emp.company_description}}</p>
+                    </li>
+                    <li>
+                        <strong>Lähetä meili:</strong>
+                        <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">{{emp.email}}</a>
+                    </li>
+                    <li>
+                        <!--show button for employee session -->
+                        <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
+                    </li>
+                    <li class="right">
+                        <!-- show button for employer session -->
+                        <button class="large red" type="button" name="destroy_job" method="post">Poista</button>
+                    </li>
+                {% endif %}
+            {% endfor %}
         </ul>
     {% endfor %}
     <p>

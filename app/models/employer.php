@@ -11,6 +11,27 @@ class Employer extends BaseModel
         parent::__construct($attributes);
     }
 
+    public static function allEmployers()
+    {
+        $query = DB::connection()->prepare('SELECT * FROM Employer');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $jobs = array();
+        foreach ($rows as $row) {
+            $employer[] = new self(array(
+      'id' => $row['id'],
+      'company_name' => $row['company_name'],
+      'email' => $row['email'],
+      'username' => $row['username'],
+      'password' => $row['password'],
+      'company_description' => $row['company_description'],
+      'created' => $row['created'],
+    ));
+        }
+
+        return $employer;
+    }
+
     public function newEmployer()
     {
         $query = DB::connection()->prepare(
@@ -79,5 +100,31 @@ class Employer extends BaseModel
         } else {
             return false;
         }
+    }
+    public static function auth($username, $password)
+    {
+        $query = DB::connection()->prepare(
+        'SELECT * FROM Employer
+        WHERE username = :username
+        AND password = :password
+        LIMIT 1');
+        $query->execute(array('username' => $username, 'password' => $password));
+        $row = $query->fetch();
+
+        if ($row) {
+            $employer[] = new self(array(
+            'id' => $row['id'],
+            'company_name' => $row['company_name'],
+            'email' => $row['email'],
+            'username' => $row['username'],
+            'password' => $row['password'],
+            'company_description' => $row['company_description'],
+            'created' => $row['created'],
+          ));
+
+            return $employer;
+        }
+
+        return;
     }
 }

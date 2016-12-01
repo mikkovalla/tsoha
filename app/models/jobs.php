@@ -15,9 +15,8 @@ class Jobs extends BaseModel
         $query->execute();
         $rows = $query->fetchAll();
         $jobs = array();
-
         foreach ($rows as $row) {
-            $jobs[] = new Jobs(array(
+            $jobs[] = new self(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -31,15 +30,13 @@ class Jobs extends BaseModel
 
         return $jobs;
     }
-
     public static function find($id)
     {
         $query = DB::connection()->prepare('SELECT * FROM Jobs WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
-
         if ($row) {
-            $jobs[] = new Jobs(array(
+            $jobs[] = new self(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -73,7 +70,7 @@ class Jobs extends BaseModel
         $jobs = array();
 
         foreach ($rows as $row) {
-            $jobs[] = new Jobs(array(
+            $jobs[] = new self(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -88,7 +85,7 @@ class Jobs extends BaseModel
         return $jobs;
     }
 
-    public function newJob($employer_id)
+    public function newJob($employer_id, $category_id, $type_id)
     {
         # code...
     }
