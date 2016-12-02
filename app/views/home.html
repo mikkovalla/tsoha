@@ -4,14 +4,22 @@
     <ul id="listings">
         {% for job in jobs %}
             <li>
-                {% for type in types %}
-                    {% if job.type_id == type.id %}
-                        <div class="type">
-                            <span style=background: {{type.color}}>
-                                {{type.name}}</span>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+              {% for type in types %}
+                  {% if job.type_id == type.id %}
+                      <div class="type">
+                          {% if type.name == 'Täys päivä' %}
+                              <span class="blue">
+                                  {{type.name}}</span>
+                          {% elseif type.name == 'Osa aika'%}
+                              <span>
+                                  {{type.name}}</span>
+                          {% else %}
+                              <span style="background-color: orange">
+                                  {{type.name}}</span>
+                          {% endif %}
+                      </div>
+                  {% endif %}
+              {% endfor %}
                 <div class="description">
                     <h5>{{job.job_name}}
                         ({{job.area}})</h5>

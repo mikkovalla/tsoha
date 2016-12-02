@@ -1,103 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
-    <form id="update_form_employer">
-        <fieldset>
-            <legend>Muuta tietojasi</legend>
-            <p>
-                <label for="company">Yrityksen nimi</label>
-                <input id="company" name="company" type="text"/>
-            </p>
-            <p>
-                <label for="email_company">Sähköposti</label>
-                <input id="email_company" name="email_company" type="email"/>
-            </p>
-            <p>
-                <label for="username_company">Käyttäjätunnus</label>
-                <input id="username_company" name="username_company" type="text"/>
-            </p>
-            <p>
-                <label for="password_company">Salasana</label>
-                <input id="password_company" name="password_company" type="password"/>
-            </p>
-            <p>
-                <label for="password2_company">Salasana uudelleen</label>
-                <input id="password2_company" name="password2_company" type="password"/>
-            </p>
-            <p>
-                <label for="company_description">Yritys esittely</label>
-                <textarea id="company_description" name="company_description" rows="8" cols="40"></textarea>
-            </p>
-            <p>
-                <input type="button" name="update" value="Päivitä" method="post" class="large blue">
-                <p class="right">
-                    Tästä voit poistaa kaikki tietosi
-                    <input type="button" name="delete" value="Poista" method="post" class="large red">
+    {% if employer_logged_in %}
+        <form id="update_form_employer">
+            <fieldset>
+                <legend>{{employer_logged_in.company_name}}
+                    Muuta tietojasi</legend>
+                <p>
+                    <label for="company">Yrityksen nimi</label>
+                    <input id="company" name="company" type="text" placeholder=" {{employer_logged_in.company_name}} "/>
                 </p>
-            </p>
-        </fieldset>
-    </form>
-    <div class="col_12 column">
-        <h5>Lisäämäni duunit</h5>
-        <ul id="listings">
-            <li>
-                <div class="type">
-                    <span class="blue">
-                        TäysPäivä</span>
-                </div>
-                <div class="description">
-                    <h5>Graafinen suunnittelija (Espoo)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
-                        Lisää...</a>
-                    <p>
-                        <input type="button" name="delete" value="Poista" method="post" class="orange">
-                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                <p>
+                    <label for="email_company">Sähköposti</label>
+                    <input id="email_company" name="email_company" type="email" placeholder=" {{employer_logged_in.email}} "/>
+                </p>
+                <p>
+                    <label for="username_company">Käyttäjätunnus</label>
+                    <input id="username_company" name="username_company" type="text" placeholder=" {{employer_logged_in.username}} "/>
+                </p>
+                <p>
+                    <label for="password_company">Salasana</label>
+                    <input id="password_company" name="password_company" type="password" placeholder=" {{employer_logged_in.password}} "/>
+                </p>
+                <p>
+                    <label for="password2_company">Salasana uudelleen</label>
+                    <input id="password2_company" name="password2_company" type="password" placeholder=" {{employer_logged_in.password}} "/>
+                </p>
+                <p>
+                    <label for="company_description">Yritys esittely</label>
+                    <textarea id="company_description" name="company_description" rows="8" cols="40" placeholder=" {{employer_logged_in.company_description}} "></textarea>
+                </p>
+                <p>
+                    <input type="button" name="update" value="Päivitä" method="post" class="large blue">
+                    <p class="right">
+                        Tästä voit poistaa kaikki tietosi
+                        <input type="button" name="delete" value="Poista" method="DELETE" class="large red">
                     </p>
-                </div>
-            </li>
-            <li>
-                <div class="type">
-                    <span class="blue">
-                        TäysPäivä</span>
-                </div>
-                <div class="description">
-                    <h5>
-                        Java osaaja (Helsinki)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
-                        Lisää...</a>
-                    <p>
-                        <input type="button" name="delete" value="Poista" method="post" class="orange">
-                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="type">
-                    <span class="red">OsaAika</span>
-                </div>
-                <div class="description">
-                    <h5>iOS harjoittelija (Oulu)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">Lisää...</a>
-                    <p>
-                        <input type="button" name="delete" value="Poista" method="post" class="orange">
-                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="type">
-                    <span class="blue">
-                        TäysPäivä</span>
-                </div>
-                <div class="description">
-                    <h5>NodeJs guru (Tampere)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
-                        Lisää...</a>
-                    <p>
-                        <input type="button" name="delete" value="Poista" method="post" class="orange">
-                        <input type="button" name="update" value="Muokkaa" method="post" class="green">
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </div>
+                </p>
+            </fieldset>
+        </form>
+        <div class="col_12 column">
+            {% if jobs is empty %}
+                <h5>Et ole vielä lisännyt yhtään duunia</h5>
+            {% endif %}
+            <h5>Lisäämäni duunit</h5>
+            <ul id="listings">
+                {% for job in jobs %}
+                    {% if job.employer_id == employer_logged_in.id %}
+                        <li>
+                            {% for type in types %}
+                                {% if job.type_id == type.id %}
+                                    <div class="type">
+                                        {% if type.name == 'Täys päivä' %}
+                                            <span class="blue">
+                                                {{type.name}}</span>
+                                        {% elseif type.name == 'Osa aika'%}
+                                            <span>
+                                                {{type.name}}</span>
+                                        {% else %}
+                                            <span style="background-color: orange">
+                                                {{type.name}}</span>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="description">
+                                <h5>{{job.job_name}}
+                                    ({{job.area}})</h5>
+                                {{job.description}}
+                                <a href="{{base_path}}/jobs/{{job.id}}">
+                                    Lisää...</a>
+                                <p>
+                                    <input type="button" name="delete" value="Poista" method="post" class="orange">
+                                    <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                                </p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}

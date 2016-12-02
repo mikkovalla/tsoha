@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>
-            {% block title %}
-            {% endblock %}
+            {% block title %}{% endblock %}
         </title>
 
         {% block head %}
@@ -28,13 +27,15 @@
                             <strong>Duuni</strong>HaKuRi</a>
                     </h1>
                 </div>
-                <div class="col_6 column right">
-                    <form id="add_job">
-                        <button class="large blue">
-                            <a href="{{base_path}}/addjob" id="addjob_button">Lisää Duuni</a>
-                        </button>
-                    </form>
-                </div>
+                {% if employer_logged_in %}
+                    <div class="col_6 column right">
+                        <form id="add_job" action="" name="addjob" method="post">
+                            <button class="large blue" type="submit">
+                                <a href="{{base_path}}/addjob" id="addjob_button">Lisää Duuni</a>
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
             </header>
 
             <div class="col_12 column">
@@ -44,25 +45,38 @@
                         <a href="{{base_path}}/">
                             Koti</a>
                     </li>
-                    <li>
-                        <a href="{{base_path}}/jobs">Tsekkaa Duunit</a>
-                    </li>
-                    <li class="right">
-                      <a href="{{base_path}}/login_employee">
-                          Kirjaudu Hakija</a>
-                  </li>
-                  <li class="right">
-                      <a href="{{base_path}}/login_employer">
-                          Kirjaudu Tarjoaja</a>
-                  </li>
-                  <li class="right">
-                      <a href="{{base_path}}/register_employee">
-                          Rekisteröidy Hakija</a>
-                  </li>
-                  <li class="right">
-                      <a href="{{base_path}}/register_employer">
-                          Rekisteröidy Tarjoaja</a>
-                  </li>
+                    {% if employer_logged_in %}
+                        <li>
+                            <a href="{{base_path}}/employer/{{employer_logged_in.id}}">Omat sivusi
+                                {{employer_logged_in.company_name}}</a>
+                        </li>
+                        <li class="right">
+                            <form name="logout" action="{{base_path}}/logout" method="post">
+                                <button type="submit">
+                                    Loggaa ulos</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{base_path}}/jobs">Tsekkaa Duunit</a>
+                        </li>
+                        <li class="right">
+                            <a href="{{base_path}}/login_employee">
+                                Kirjaudu Hakija</a>
+                        </li>
+                        <li class="right">
+                            <a href="{{base_path}}/login_employer">
+                                Kirjaudu Tarjoaja</a>
+                        </li>
+                        <li class="right">
+                            <a href="{{base_path}}/register_employee">
+                                Rekisteröidy Hakija</a>
+                        </li>
+                        <li class="right">
+                            <a href="{{base_path}}/register_employer">
+                                Rekisteröidy Tarjoaja</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
 

@@ -27,9 +27,10 @@ class JobsController extends BaseController
 
     public static function details($id)
     {
+        $employer = self::get_employer_logged_in();
         $job = Jobs::find($id);
         $types = Type::allTypes();
-        $employers = Employer::allEmployers();
-        View::make('jobs/details.html', array('jobs' => $job, 'employers' => $employers, 'types' => $types));
+        $employer = Employer::find($job->employer_id);
+        View::make('jobs/details.html', array('job' => $job, 'employer' => $employer, 'types' => $types));
     }
 }

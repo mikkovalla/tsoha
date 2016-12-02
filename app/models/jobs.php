@@ -36,7 +36,7 @@ class Jobs extends BaseModel
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row) {
-            $jobs[] = new self(array(
+            $jobs = new self(array(
         'id' => $row['id'],
         'category_id' => $row['category_id'],
         'employer_id' => $row['employer_id'],
@@ -57,14 +57,13 @@ class Jobs extends BaseModel
     {
     }
 
-    public static function findByEmployer($employer_id)
+    public static function findByEmployer()
     {
         #SELECT pitää tarkistaa
         $query = DB::connection()->prepare(
-          'SELECT * FROM Jobs
-          LEFT JOIN Jobs.employer_id = :employer_id');
+          'SELECT * FROM Jobs');
 
-        $query->execute(array('employer_id' => Employer.'.'.$employer_id));
+        $query->execute();
 
         $rows = $query->fetchAll();
         $jobs = array();

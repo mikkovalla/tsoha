@@ -1,66 +1,105 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for job in jobs %}
-        <h3>{{job.job_name}}</h3>
-        <ul>
-            {% for emp in employers %}
-                {% if job.employer_id == emp.id %}
+    {% if employer_logged_in %}
+        {% if job.employer_id == employer_logged_in.id %}
+            <h3>{{job.job_name}}</h3>
+            <ul>
+                <li>
+                    <strong>Yritys:</strong>
+                    {{employer_logged_in.company_name}}
+                </li>
+                <li>
+                    <strong>Sijainti:</strong>
+                    {{job.area}}</li>
+                <li>
+                    {% for type in types %}
+                        {% if job.type_id == type.id %}
+                            <strong>Tyyppi:
+                            </strong>
+                            {{type.name}}</li>
+                    {% endif %}
+                {% endfor %}
+                <li>
+                    <strong>Työnkuvaus:</strong>
+                    {{job.description}}
+                </li>
+                <li>
+                    <strong>Yritys esittely:</strong>
+                    <p>{{employer_logged_in.company_description}}</p>
+                </li>
+                <li>
+                    <strong>Lähetä meili:</strong>
+                    <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">{{employer_logged_in.email}}</a>
+                </li>
+                <li>
+                    <!--show button for employee session -->
+                    <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
+                </li>
+                <li class="right">
+                    <!-- show button for employer session -->
+                    <button class="large red" type="button" name="destroy_job" method="post">Poista</button>
+                </li>
+            </ul>
+            <p>
+                <a href="{{base_path}}/employer">Takaisin selailemaan...</a>
+            </p>
+            <!--Employer session view show applicants-->
+            <div class="col_12 column">
+                <h5>Hakijat</h5>
+                <ul>
                     <li>
-                        <strong>Yritys:</strong>
-                        {{emp.company_name}}
-                    </li>
+                        <strong>Nimi:</strong>
+                        Etunimi Sukunimi</li>
                     <li>
-                        <strong>Sijainti:</strong>
-                        {{job.area}}</li>
-                    <li>
-                        {% for type in types %}
-                            {% if job.type_id == type.id %}
-                                <strong>Job Type:</strong>
-                                {{type.name}}</li>
-                        {% endif %}
-                    {% endfor %}
-                    <li>
-                        <strong>Työnkuvaus:</strong>
-                        {{job.description}}
-                    </li>
-                    <li>
-                        <strong>Yritys esittely:</strong>
-                        <p>{{emp.company_description}}</p>
+                        <strong>Esittely:</strong>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus risus at dapibus malesuada. Vestibulum euismod, velit sit amet tempor ornare, nulla augue mattis mi, nec ultricies dolor augue nec lectus. Integer bibendum enim ipsum.</p>
                     </li>
                     <li>
                         <strong>Lähetä meili:</strong>
-                        <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">{{emp.email}}</a>
+                        <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">etunimisukunimi@moikkamoi.fi</a>
                     </li>
-                    <li>
-                        <!--show button for employee session -->
-                        <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
-                    </li>
-                    <li class="right">
-                        <!-- show button for employer session -->
-                        <button class="large red" type="button" name="destroy_job" method="post">Poista</button>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    {% endfor %}
-    <p>
-        <a href="{{base_path}}/jobs">Takaisin selailemaan...</a>
-    </p>
-    <!--Employer session view show applicants-->
-    <div class="col_12 column">
-        <h5>Hakijat</h5>
-        <ul>
-            <li>
-                <strong>Nimi:</strong>
-                Etunimi Sukunimi</li>
-            <li>
-                <strong>Esittely:</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus risus at dapibus malesuada. Vestibulum euismod, velit sit amet tempor ornare, nulla augue mattis mi, nec ultricies dolor augue nec lectus. Integer bibendum enim ipsum.</p>
-            </li>
-            <li>
-                <strong>Lähetä meili:</strong>
-                <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">etunimisukunimi@moikkamoi.fi</a>
-            </li>
-        </ul>
-    </div>
+                </ul>
+            </div>
+        {% endif %}
+    {% else %}
+        {% if job.employer_id == employer.id %}
+            <h3>{{job.job_name}}</h3>
+            <ul>
+                <li>
+                    <strong>Yritys:</strong>
+                    {{employer.company_name}}
+                </li>
+                <li>
+                    <strong>Sijainti:</strong>
+                    {{job.area}}</li>
+                <li>
+                    {% for type in types %}
+                        {% if job.type_id == type.id %}
+                            <strong>Tyyppi:
+                            </strong>
+                            {{type.name}}</li>
+                    {% endif %}
+                {% endfor %}
+                <li>
+                    <strong>Työnkuvaus:</strong>
+                    {{job.description}}
+                </li>
+                <li>
+                    <strong>Yritys esittely:</strong>
+                    <p>{{employer.company_description}}</p>
+                </li>
+                <li>
+                    <strong>Lähetä meili:</strong>
+                    <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">{{employer.email}}</a>
+                </li>
+                <li>
+                    <!--show button for employee session -->
+                    <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
+                </li>
+            </ul>
+            <p>
+                <a href="{{base_path}}/jobs">Takaisin selailemaan...</a>
+            </p>
+        {% endif %}
+    {% endif %}
 {% endblock %}

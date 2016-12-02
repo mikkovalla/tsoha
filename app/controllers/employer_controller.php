@@ -1,9 +1,9 @@
 <?php
 
+require 'app/models/jobs.php';
 require 'app/models/employer.php';
-/**
- *
- */
+require 'app/models/types.php';
+
 class EmployerController extends BaseController
 {
     public static function login()
@@ -23,7 +23,7 @@ class EmployerController extends BaseController
         } else {
             #Kint::dump($employer);
             $_SESSION['employer'] = $employer->id;
-            Redirect::to('/employer/employer.html', array('message' => 'Tervetuloa taas '.$employer->name.'!'));
+            Redirect::to('/employer/employer.html', array('message' => 'Tervetuloa taas '.$employer->company_name.'!'));
         }
     }
 
@@ -46,7 +46,25 @@ class EmployerController extends BaseController
         ));
             $employer->newEmployer();
 
-            Redirect::to('/employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään '.$employer->name.'!'));
+            Redirect::to('/employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään '.$employer->company_name.'!'));
         }
+    }
+    public static function employer($id)
+    {
+        $employer = self::get_employer_logged_in();
+        if ($employer) {
+            $types = Type::allTypes();
+            $jobs = Jobs::findByEmployer();
+            if ($jobs) {
+                View::make('/employer/employer.html', array('jobs' => $jobs, 'employer' => $employer, 'types' => $types));
+            }
+        }
+        View::make('/employer/employer.html', array('message' => 'Et ole vielä lisännyt yhtään duunia!'));
+    }
+
+    public static function logout()
+    {
+        $_SESSION['employer'] = null;
+        Redirect::to('/', array('message' => 'Olet kirjautunut ulos'));
     }
 }

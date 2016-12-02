@@ -39,6 +39,10 @@
     EmployerController::handle_login();
   });
 
+  $routes->post('/logout', function () {
+    EmployerController::logout();
+  });
+
   $routes->get('/register_employee', function () {
     EmployeeController::register_employee();
   });

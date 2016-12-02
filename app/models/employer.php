@@ -38,7 +38,7 @@ class Employer extends BaseModel
         $query->execute(array('id' => $employer_id));
         $row = $query->fetch();
         if ($row) {
-            $employer[] = new self(array(
+            $employer = new self(array(
             'id' => $row['id'],
             'company_name' => $row['company_name'],
             'email' => $row['email'],
@@ -134,7 +134,7 @@ class Employer extends BaseModel
         $row = $query->fetch();
 
         if ($row) {
-            $employer[] = new self(array(
+            $employer = new self(array(
             'id' => $row['id'],
             'company_name' => $row['company_name'],
             'email' => $row['email'],
