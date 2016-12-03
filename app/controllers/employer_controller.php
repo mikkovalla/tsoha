@@ -35,19 +35,18 @@ class EmployerController extends BaseController
     public static function handle_register()
     {
         $params = $_POST;
-        if (!Employer::checkUsernameEmployer($params['username'])) {
-            $employer = new Employer(array(
+
+        $employer = new Employer(array(
           'company_name' => $params['company_name'],
           'email' => $params['email'],
           'username' => $params['username'],
           'password' => $params['password'],
           'company_description' => $params['company_description'],
-          'created' => date('dd/mm/YY'),
+          'created' => '02-12-2016'
         ));
-            $employer->newEmployer();
+        $employer->newEmployer();
 
-            Redirect::to('/employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään '.$employer->company_name.'!'));
-        }
+        Redirect::to('/login_employer.html', array('message' => 'Voit nyt kirjautua sisään!'));
     }
     public static function employer($id)
     {
@@ -78,7 +77,7 @@ class EmployerController extends BaseController
         'email' => $params['email'],
         'username' => $params['username'],
         'password' => $params['password'],
-        'company_description' => $params['company_description']
+        'company_description' => $params['company_description'],
       );
         $employer = new Employer($attributes);
 

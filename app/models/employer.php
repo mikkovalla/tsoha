@@ -107,21 +107,6 @@ class Employer extends BaseModel
         return $message;
     }
 
-    public static function checkUsernameEmployer($username)
-    {
-        $query = DB::connection()->prepare(
-          'SELECT FROM Employer
-          WHERE username = :username
-          LIMIT 1');
-        $query->execute(array());
-        $row = $query->fetch();
-
-        if ($row) {
-            return true;
-        } else {
-            return false;
-        }
-    }
     public function auth($username, $password)
     {
         $query = DB::connection()->prepare(
