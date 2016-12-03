@@ -85,4 +85,12 @@ class EmployerController extends BaseController
 
         Redirect::to('/employer/employer.html', array('message' => 'Tiedot päivitetty!'));
     }
+
+    public static function delete($id)
+    {
+      $employer = new Employer(array('id' => $id));
+      $employer->deleteEmployer();
+
+      Redirect::to('/', array('message' => 'Tiedot poistettu palvelusta!'));
+    }
 }

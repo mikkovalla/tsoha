@@ -98,13 +98,10 @@ class Employer extends BaseModel
         return true;
     }
 
-    public function deleteEmployer($id)
+    public function deleteEmployer()
     {
-        $message = 'Tietosi on poistettu!';
         $query = DB::connection()->prepare('DELETE FROM Employer Where id = :id');
-        $query = execute(array('id' => $this->id));
-
-        return $message;
+        $query->execute(array('id' => $this->id));
     }
 
     public function auth($username, $password)

@@ -55,8 +55,12 @@
     EmployerController::register();
   });
 
-  $routes->post('/employer/:id', function ($id) {
+  $routes->post('/employer/:id/update', function ($id) {
     EmployerController::update($id);
+  });
+
+  $routes->post('/employer/:id/delete', function ($id) {
+    EmployerController::delete($id);
   });
 
   $routes->get('/updatejob', function () {

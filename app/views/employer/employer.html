@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     {% if employer_logged_in %}
-        <form id="update_form_employer" name="update" method="post" action="{{base_path}}/employer/{{employer_logged_in.id}}">
+        <form id="update_form_employer" name="update" method="post" action="{{base_path}}/employer/{{employer_logged_in.id}}/update">
             <fieldset>
                 <legend>{{employer_logged_in.company_name}}
                     Muuta tietojasi</legend>
@@ -32,10 +32,10 @@
                 </p>
             </fieldset>
         </form>
-        <form id="delete_form_employer" name="delete" method="post" action="{{base_path}}/employer/{{employer_logged_in.id}}">
+        <form id="delete_form_employer" name="delete" method="post" action="{{base_path}}/employer/{{employer_logged_in.id}}/delete">
             <p class="right">
                 Tästä voit poistaa kaikki tietosi
-                <input type="button" value="Poista" method="DELETE" class="large red">
+                <input type="submit" value="Poista" class="large red">
             </p>
         </form>
         <div class="col_12 column">
