@@ -67,4 +67,23 @@ class EmployerController extends BaseController
         $_SESSION['employer'] = null;
         Redirect::to('/', array('message' => 'Olet kirjautunut ulos'));
     }
+
+    public static function update($id)
+    {
+        $params = $_POST;
+
+        $attributes = array(
+        'id' => $id,
+        'company_name' => $params['company_name'],
+        'email' => $params['email'],
+        'username' => $params['username'],
+        'password' => $params['password'],
+        'company_description' => $params['company_description']
+      );
+        $employer = new Employer($attributes);
+
+        $employer->updateEmployer();
+
+        Redirect::to('/employer/employer.html', array('message' => 'Tiedot päivitetty!'));
+    }
 }

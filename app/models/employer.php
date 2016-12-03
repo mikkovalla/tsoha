@@ -69,32 +69,31 @@ class Employer extends BaseModel
         'username' => $this->username,
         'password' => $this->password,
         'company_description' => $this->company_description,
-        'created' => $this->created, ));
+        'created' => $this->created));
 
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
-    public function updateEmployer($id)
+    public function updateEmployer()
     {
-        #Tämä funktio on vielä kesken. Päivitän sen kun saan html osan valmiiksi.
-      $query = DB::connection()->prepare(
-      'UPDATE Employer SET (
+        $query = DB::connection()->prepare(
+        'UPDATE Employer SET (
         company_name = :company_name,
         email = :email,
         username = :username,
         password = :password,
-        company_description =  :company_description,
-        created = :created)
-      WHERE id = :id'
-    );
+        company_description =  :company_description)
+        WHERE id = :id');
+
         $query->execute(array(
       'company_name' => $this->company_name,
       'email' => $this->email,
       'username' => $this->username,
       'password' => $this->password,
       'company_description' => $this->company_description,
-      'created' => $this->created, ));
+      'id' => $this->id
+      ));
 
         return true;
     }

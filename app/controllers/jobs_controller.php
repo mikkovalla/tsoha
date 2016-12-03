@@ -14,7 +14,7 @@ class JobsController extends BaseController
         View::make('home.html', array('jobs' => $jobs, 'employers' => $employers, 'types' => $types));
     }
 
-    public static function addjob($employer_id)
+    public static function addjob($id)
     {
         #todo job per employer id
         $params = $_POST;

@@ -8,8 +8,8 @@
     HelloWorldController::sandbox();
   });
 
-  $routes->post('/addjob', function () {
-    JobsController::addjob();
+  $routes->post('/addjob/:id', function ($id) {
+    JobsController::addjob($id);
   });
 
   $routes->get('/jobs/:id', function ($id) {
@@ -53,6 +53,10 @@
 
   $routes->get('/register_employer', function () {
     EmployerController::register();
+  });
+
+  $routes->post('/employer/:id', function ($id) {
+    EmployerController::update($id);
   });
 
   $routes->get('/updatejob', function () {
