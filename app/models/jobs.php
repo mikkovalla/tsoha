@@ -24,7 +24,7 @@ class Jobs extends BaseModel
         'job_name' => $row['job_name'],
         'description' => $row['description'],
         'area' => $row['area'],
-        'created' => $row['created']
+        'created' => $row['created'],
       ));
         }
 
@@ -104,5 +104,13 @@ class Jobs extends BaseModel
 
         $row = $query->fetch();
         $this->id = $row['id'];
+    }
+
+    public function deleteJob()
+    {
+        $query = DB::connection()->prepare(
+          'DELETE FROM Jobs
+          Where id = :id');
+        $query->execute(array('id' => $this->id));
     }
 }

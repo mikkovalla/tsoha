@@ -54,4 +54,16 @@ class JobsController extends BaseController
         $employer = Employer::find($job->employer_id);
         View::make('jobs/details.html', array('job' => $job, 'employer' => $employer, 'types' => $types));
     }
+
+    public static function deleteJob($id)
+    {
+        $employer = self::get_employer_logged_in();
+
+        if ($employer) {
+            $job = new Jobs(array('id' => $id));
+            $job->deleteJob();
+            Redirect::to('/employer/employer.html', array('message' => 'Duuni poistettu palvelusta!'));
+        }
+        Redirect::to('/', array('message' => 'Sinun pitää kirjautua!'));
+    }
 }

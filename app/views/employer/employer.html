@@ -76,8 +76,9 @@
                                 <a href="{{base_path}}/jobs/{{job.id}}">
                                     Lisää...</a>
                                 <p>
-                                    <input type="button" name="delete" value="Poista" method="post" class="orange">
-                                    <input type="button" name="update" value="Muokkaa" method="post" class="green">
+                                    <form method="post" action="{{base_path}}/jobs/{{job.id}}/delete">
+                                        <input type="submit" name="delete" value="Poista" class="orange">
+                                    </form>
                                 </p>
                             </div>
                         </li>

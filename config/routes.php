@@ -67,6 +67,6 @@
     EmployerController::delete($id);
   });
 
-  $routes->get('/updatejob', function () {
-    JobsController::updatejob();
+  $routes->post('/jobs/:id/delete', function ($id) {
+    JobsController::deleteJob($id);
   });
