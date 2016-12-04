@@ -29,9 +29,9 @@
                 </div>
                 {% if employer_logged_in %}
                     <div class="col_6 column right">
-                        <form id="add_job" action="" name="addjob" method="post">
+                        <form id="add_job" action="" name="addjob" method="get">
                             <button class="large blue" type="submit">
-                                <a href="{{base_path}}/addjob" id="addjob_button">Lisää Duuni</a>
+                                <a href="{{base_path}}/addjob/{{employer_logged_in.id}}" id="addjob_button">Lisää Duuni</a>
                             </button>
                         </form>
                     </div>
@@ -107,6 +107,13 @@
                     <button class="large blue" type="submit">Hae</button>
                 </form>
             </div>
+            {% if message %}
+                <div class="notice warning">
+                    <i class="icon-warning-sign icon-large"></i>
+                    {{byebye}}
+                    <a href="#close" class="icon-remove"></a>
+                </div>
+            {% endif %}
             <div class="col_12 column">
                 <!-- Dynaaminen sisältö tulee tähän -->
                 {% block content %}{% endblock %}

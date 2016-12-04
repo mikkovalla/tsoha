@@ -24,7 +24,7 @@ class Jobs extends BaseModel
         'job_name' => $row['job_name'],
         'description' => $row['description'],
         'area' => $row['area'],
-        'created' => $row['created'],
+        'created' => $row['created']
       ));
         }
 
@@ -84,8 +84,25 @@ class Jobs extends BaseModel
         return $jobs;
     }
 
-    public function newJob($employer_id, $category_id, $type_id)
+    public function newJob()
     {
-        # code...
+        $query = DB::connection()->prepare(
+      'INSERT INTO Jobs
+      (category_id, employer_id, type_id, job_name, description, area, created)
+      VALUES
+      (:category_id, :employer_id, :type_id, :job_name, :description, :area, :created)
+      RETURNING id'
+    );
+        $query->execute(array(
+      'category_id' => $this->category_id,
+      'employer_id' => $this->employer_id,
+      'type_id' => $this->type_id,
+      'job_name' => $this->job_name,
+      'description' => $this->description,
+      'area' => $this->area,
+      'created' => $this->created, ));
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
     }
 }

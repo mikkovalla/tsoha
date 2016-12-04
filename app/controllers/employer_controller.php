@@ -42,11 +42,11 @@ class EmployerController extends BaseController
           'username' => $params['username'],
           'password' => $params['password'],
           'company_description' => $params['company_description'],
-          'created' => '02-12-2016',
+          'created' => date('Y-m-d'),
         ));
         $employer->newEmployer();
 
-        Redirect::to('/login_employer', array('message' => 'Voit nyt kirjautua sisään!'));
+        Redirect::to('/employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään!'));
     }
     public static function employer($id)
     {
@@ -55,11 +55,11 @@ class EmployerController extends BaseController
             $types = Type::allTypes();
             $jobs = Jobs::findByEmployer();
             if ($jobs) {
-                View::make('/employer/employer.html', array('jobs' => $jobs, 'employer' => $employer, 'types' => $types));
+                View::make('employer/employer.html', array('jobs' => $jobs, 'employer' => $employer, 'types' => $types));
             }
-            View::make('/employer/employer.html', array('message' => 'Et ole vielä lisännyt yhtään duunia!'));
+            View::make('employer/employer.html', array('message' => 'Et ole vielä lisännyt yhtään duunia!'));
         }
-        Redirect::to('/login_employer.html');
+        Redirect::to('/employer/login_employer.html');
     }
 
     public static function logout()
@@ -92,6 +92,6 @@ class EmployerController extends BaseController
         $employer = new Employer(array('id' => $id));
         $employer->deleteEmployer();
 
-        Redirect::to('/', array('message' => 'Tiedot poistettu palvelusta!'));
+        Redirect::to('/', array('byebye' => 'Tiedot poistettu palvelusta!'));
     }
 }

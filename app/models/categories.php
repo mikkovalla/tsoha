@@ -23,4 +23,18 @@ class Category extends BaseModel
 
         return $categories;
     }
+    public static function findOne($name)
+    {
+        $query = DB::connection()->prepare('SELECT * FROM Categories WHERE name = :name LIMIT 1');
+        $query->execute(array('name' => $name));
+        $row = $query->fetch();
+        if ($row) {
+            $cat = new self(array(
+        'id' => $row['id'],
+        'name' => $row['name'],
+      ));
+
+            return $cat->id;
+        }
+    }
 }

@@ -8,8 +8,12 @@
     HelloWorldController::sandbox();
   });
 
-  $routes->post('/addjob/:id', function ($id) {
-    JobsController::addjob($id);
+  $routes->get('/addjob/:id', function () {
+    JobsController::addjob();
+  });
+
+  $routes->post('/addjob/:id', function () {
+    JobsController::addjob_handler();
   });
 
   $routes->get('/jobs/:id', function ($id) {

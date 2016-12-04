@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <form id="add_job_form_employer">
+    <form id="add_job_form_employer" method="post" action="{{base_path}}/addjob/{{employer_logged_in.id}}">
         <fieldset>
             <legend>Lisää duuni</legend>
             <p>
@@ -9,16 +9,16 @@
             </p>
             <p>
                 <label for="job_type">Duunin tyyppi</label>
-                <select id="job_type" name="">
-                    <option>Valitse</option>
-                    <option value="fulltime">Täys päivä</option>
-                    <option value="parttime">Osa aika</option>
-                    <option value="freelancer">Freelance</option>
+                <select id="job_type" name="type">
+                    <option>Valitse tyyppi</option>
+                    <option value="Täys päivä">Täys päivä</option>
+                    <option value="Osa aika">Osa aika</option>
+                    <option value="Freelance">Freelance</option>
                 </select>
             </p>
             <p>
                 <label for="area_select">Missä duuni sijaitsee</label>
-                <select id="area_select" name="">
+                <select id="area_select" name="area">
                     <option>Valitse alue</option>
                     <option value="espoo">Espoo</option>
                     <option value="helsinki">Helsinki</option>
@@ -32,7 +32,7 @@
             </p>
             <p>
                 <label for="category_select">Mikä ala</label>
-                <select id="category_select" name="">
+                <select id="category_select" name="category">
                     <option>Valitse ala</option>
                     <option>Front-end devaaja</option>
                     <option>Back-end devaaja</option>
@@ -45,10 +45,10 @@
             </p>
             <p>
                 <label for="job_description">Duunin kuvaus</label>
-                <textarea id="job_description" name="job_description"></textarea>
+                <textarea id="job_description" name="description"></textarea>
             </p>
             <p>
-                <input class="blue" type="submit" value="Lisää duuni" method="post" action="{{base_path}}/jobs"/>
+                <input class="blue" type="submit" value="Lisää duuni"/>
             </p>
         </fieldset>
     </form>
