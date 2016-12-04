@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
     {% if employer_logged_in %}
-        {% if message %}
-            <div class="notice success">
-                <i class="icon-ok icon-large"></i>
-                {{message}}
-                <a href="#close" class="icon-remove"></a>
-            </div>
-        {% endif %}
         <form id="update_form_employer" name="update" method="post" action="{{base_path}}/employer/{{employer_logged_in.id}}/update">
             <fieldset>
                 <legend>

@@ -110,6 +110,13 @@
             {% if message %}
                 <div class="notice warning">
                     <i class="icon-warning-sign icon-large"></i>
+                    {{message}}
+                    <a href="#close" class="icon-remove"></a>
+                </div>
+            {% endif %}
+            {% if byebye %}
+                <div class="notice warning">
+                    <i class="icon-warning-sign icon-large"></i>
                     {{byebye}}
                     <a href="#close" class="icon-remove"></a>
                 </div>

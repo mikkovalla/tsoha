@@ -31,17 +31,14 @@
                     <strong>Lähetä meili:</strong>
                     <a href="mailto:joku@jokulafka.fi?Subject=Job%20Applicant" target="_top">{{employer_logged_in.email}}</a>
                 </li>
-                <li>
-                    <!--show button for employee session -->
-                    <button class="large blue" type="button" name="apply_job" method="post">Hae duunia</button>
-                </li>
                 <li class="right">
-                    <!-- show button for employer session -->
-                    <button class="large red" type="button" name="destroy_job" method="post">Poista</button>
+                    <form method="post" action="{{base_path}}/jobs/{{job.id}}/delete">
+                        <input type="submit" name="delete" value="Poista" class=" red">
+                    </form>
                 </li>
             </ul>
             <p>
-                <a href="{{base_path}}/employer">Takaisin selailemaan...</a>
+                <a href="{{base_path}}/employer">Takaisin omalle sivulle</a>
             </p>
             <!--Employer session view show applicants-->
             <div class="col_12 column">
