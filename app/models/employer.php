@@ -81,16 +81,12 @@ class Employer extends BaseModel
         'UPDATE Employer SET
         company_name = :company_name,
         email = :email,
-        username = :username,
-        password = :password,
         company_description =  :company_description
         WHERE id = :id');
 
         $query->execute(array(
       'company_name' => $this->company_name,
       'email' => $this->email,
-      'username' => $this->username,
-      'password' => $this->password,
       'company_description' => $this->company_description,
       'id' => $this->id
       ));

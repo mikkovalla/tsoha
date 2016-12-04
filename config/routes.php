@@ -21,7 +21,7 @@
   });
 
   $routes->get('/employer/:id', function ($id) {
-    EmployerController::employer($id);
+        EmployerController::employer($id);
   });
 
   $routes->get('/jobs', function () {
