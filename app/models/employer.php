@@ -78,12 +78,12 @@ class Employer extends BaseModel
     public function updateEmployer()
     {
         $query = DB::connection()->prepare(
-        'UPDATE Employer SET (
+        'UPDATE Employer SET
         company_name = :company_name,
         email = :email,
         username = :username,
         password = :password,
-        company_description =  :company_description)
+        company_description =  :company_description
         WHERE id = :id');
 
         $query->execute(array(
