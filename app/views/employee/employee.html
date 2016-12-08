@@ -1,87 +1,92 @@
 {% extends "base.html" %}
 {% block content %}
-    <form id="update_form_employee">
-        <fieldset>
-            <legend>Päivitä tietosi</legend>
-            <p>
-                <label for="first_name">Etunimi</label>
-                <input id="first_name" name="first_name" type="text"/>
+    {% if employee_logged_in %}
+        <form id="update_form_employee" name="update" method="post" action="{{base_path}}/employee/{{employee_logged_in.id}}/update">
+            <fieldset>
+                <legend>Päivitä tietosi</legend>
+                <p>
+                    <label for="first_name">Etunimi</label>
+                    <input id="first_name" name="first_name" type="text" value="{{employee_logged_in.first_name}}"/>
+                </p>
+                <p>
+                    <label for="last_name">Sukunimi</label>
+                    <input id="last_name" name="last_name" type="text" value="{{employee_logged_in.last_name}}"/>
+                </p>
+                <p>
+                    <label for="email">Sähköposti</label>
+                    <input id="email" name="email" type="email" value="{{employee_logged_in.email}}"/>
+                </p>
+                <p>
+                    <label for="username">Käyttäjätunnus</label>
+                    <input id="username" name="username" type="text" value="{{employee_logged_in.username}}"/>
+                </p>
+                <p>
+                    <label for="password">Salasana</label>
+                    <input id="password" name="password" type="password" value="{{employee_logged_in.password}}"/>
+                </p>
+                <p>
+                    <label for="employee_description">Esittely</label>
+                    <textarea id="employee_description" name="description" rows="8" cols="40" value="{{employee_logged_in.description}}"></textarea>
+                </p>
+                <p>
+                    <input type="submit" class="large blue">
+                </p>
+            </fieldset>
+        </form>
+        <form id="delete_form_employee" name="delete" method="post" action="{{base_path}}/employee/{{employee_logged_in.id}}/delete">
+            <p class="right">
+                Tästä voit poistaa kaikki tietosi
+                <input type="submit" value="Poista" class="large red">
             </p>
-            <p>
-                <label for="last_name">Sukunimi</label>
-                <input id="last_name" name="last_name" type="text"/>
-            </p>
-            <p>
-                <label for="email">Sähköposti</label>
-                <input id="email" name="email" type="email"/>
-            </p>
-            <p>
-                <label for="username">Käyttäjätunnus</label>
-                <input id="username" name="username" type="text"/>
-            </p>
-            <p>
-                <label for="password">Salasana</label>
-                <input id="password" name="password" type="password"/>
-            </p>
-            <p>
-                <label for="password2">Salasana uudelleen</label>
-                <input id="password2" name="password2" type="password"/>
-            </p>
-            <p>
-                <label for="employee_description">Esittely</label>
-                <textarea id="employee_description" name="employee_description" rows="8" cols="40"></textarea>
-            </p>
-            <p>
-                <input type="button" name="update" value="Päivitä" method="post" class="large blue">
-            </p>
-        </fieldset>
-    </form>
-    <div class="col_12 column">
-        <h5>Hakemani duunit</h5>
-        <ul id="listings">
-            <li>
-                <div class="type">
-                    <span class="blue">
-                        TäysPäivä</span>
-                </div>
-                <div class="description">
-                    <h5>Graafinen suunnittelija (Espoo)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
-                        Lisää...</a>
-                </div>
-            </li>
-            <li>
-                <div class="type">
-                    <span class="blue">
-                        TäysPäivä</span>
-                </div>
-                <div class="description">
-                    <h5>
-                        Java osaaja (Helsinki)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
-                        Lisää...</a>
-                </div>
-            </li>
-            <li>
-                <div class="type">
-                    <span class="red">OsaAika</span>
-                </div>
-                <div class="description">
-                    <h5>iOS harjoittelija (Oulu)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">Lisää...</a>
-                </div>
-            </li>
-            <li>
-                <div class="type">
-                    <span class="blue">
-                        TäysPäivä</span>
-                </div>
-                <div class="description">
-                    <h5>NodeJs guru (Tampere)</h5>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
-                        Lisää...</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+        </form>
+        {{emp}}
+        <div class="col_12 column">
+            <h5>Hakemani duunit</h5>
+            <ul id="listings">
+                <li>
+                    <div class="type">
+                        <span class="blue">
+                            TäysPäivä</span>
+                    </div>
+                    <div class="description">
+                        <h5>Graafinen suunnittelija (Espoo)</h5>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                            Lisää...</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="type">
+                        <span class="blue">
+                            TäysPäivä</span>
+                    </div>
+                    <div class="description">
+                        <h5>
+                            Java osaaja (Helsinki)</h5>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                            Lisää...</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="type">
+                        <span class="red">OsaAika</span>
+                    </div>
+                    <div class="description">
+                        <h5>iOS harjoittelija (Oulu)</h5>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">Lisää...</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="type">
+                        <span class="blue">
+                            TäysPäivä</span>
+                    </div>
+                    <div class="description">
+                        <h5>NodeJs guru (Tampere)</h5>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<a href="details.html">
+                            Lisää...</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}

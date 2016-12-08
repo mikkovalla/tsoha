@@ -1,5 +1,7 @@
 <?php
 
+#JobsControllers
+
   $routes->get('/', function () {
     JobsController::index();
   });
@@ -20,35 +22,71 @@
     JobsController::details($id);
   });
 
-  $routes->get('/employee/:id', function ($id) {
-    EmployeeController::employee($id);
-  });
-
-  $routes->get('/employer/:id', function ($id) {
-        EmployerController::employer($id);
+  $routes->get('/jobs', function () {
+    JobsController::index();
   });
 
   $routes->get('/jobs', function () {
     JobsController::index();
   });
 
+  $routes->post('/jobs/:id/delete', function ($id) {
+    JobsController::deleteJob($id);
+  });
+#End JobsControllers
+
+#EmployeeControllers
+
+  $routes->get('/employee/:id', function ($id) {
+    EmployeeController::employee($id);
+  });
+
   $routes->get('/login_employee', function () {
-    EmployeeController::login_employee();
+    EmployeeController::login();
+  });
+
+  $routes->post('/login_employee', function () {
+    EmployeeController::handle_login();
+  });
+
+  $routes->post('/logout', function () {
+    EmployeeController::logout();
+  });
+
+  $routes->post('/register_employee', function () {
+  EmployeeController::handle_register();
+  });
+
+  $routes->get('/register_employee', function () {
+    EmployeeController::register();
+  });
+
+  $routes->post('/employee/:id/update', function ($id) {
+    EmployeeController::update($id);
+  });
+
+  $routes->post('/employee/:id/delete', function ($id) {
+    EmployeeController::delete($id);
+  });
+
+  #End EmployerControllers
+
+  #EmployerControllers
+
+  $routes->get('/employer/:id', function ($id) {
+    EmployerController::employer($id);
   });
 
   $routes->get('/login_employer', function () {
     EmployerController::login();
   });
+
   $routes->post('/login_employer', function () {
     EmployerController::handle_login();
   });
 
   $routes->post('/logout', function () {
     EmployerController::logout();
-  });
-
-  $routes->get('/register_employee', function () {
-    EmployeeController::register_employee();
   });
 
   $routes->post('/register_employer', function () {
@@ -67,6 +105,4 @@
     EmployerController::delete($id);
   });
 
-  $routes->post('/jobs/:id/delete', function ($id) {
-    JobsController::deleteJob($id);
-  });
+  #End EmployerControllers

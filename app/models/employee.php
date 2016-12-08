@@ -30,39 +30,82 @@ class Employee extends BaseModel
         $this->id = $row['id'];
     }
 
-    public function updateEmployee($id)
+    public static function find($employee_id)
     {
-        #Tämä funktio on vielä kesken. Päivitän sen kun saan html osan valmiiksi.
-      $query = DB::connection()->prepare(
-      'UPDATE Employee SET (
+        $query = DB::connection()->prepare('SELECT * FROM Employee WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $employee_id));
+        $row = $query->fetch();
+        if ($row) {
+            $employee = new self(array(
+            'id' => $row['id'],
+            'first_name' => $row['first_name'],
+            'last_name' => $row['last_name'],
+            'email' => $row['email'],
+            'username' => $row['username'],
+            'password' => $row['password'],
+            'description' => $row['description'],
+            'created' => $row['created'],
+    ));
+
+            return $employee;
+        }
+
+        return;
+    }
+
+    public function updateEmployee()
+    {
+        $query = DB::connection()->prepare(
+      'UPDATE Employee SET
         first_name = :first_name,
         last_name = :last_name,
         email = :email,
-        username = :username,
-        password = :password,
-        description =  :description,
-        created = :created)
+        description =  :description
       WHERE id = :id'
     );
         $query->execute(array(
+      'id' => $this->id,
       'first_name' => $this->first_name,
       'last_name' => $this->last_name,
       'email' => $this->email,
-      'username' => $this->username,
-      'password' => $this->password,
       'description' => $this->description,
-      'created' => $this->created, ));
+       ));
 
         return true;
     }
 
-    public function deleteEmployee($id)
+    public function deleteEmployee()
     {
-        $message = 'Tietosi on poistettu!';
         $query = DB::connection()->prepare('DELETE FROM Employee Where id = :id');
-        $query = execute(array('id' => $this->id));
+        $query->execute(array('id' => $this->id));
+    }
 
-        return $message;
+    public function auth($username, $password)
+    {
+        $query = DB::connection()->prepare(
+        'SELECT * FROM Employee
+        WHERE username = :username
+        AND password = :password
+        LIMIT 1');
+        $query->execute(array('username' => $username, 'password' => $password));
+        $row = $query->fetch();
+
+        if ($row) {
+            $employee = new self(array(
+            'id' => $row['id'],
+            'first_name' => $row['first_name'],
+            'last_name' => $row['last_name'],
+            'email' => $row['email'],
+            'username' => $row['username'],
+            'password' => $row['password'],
+            'description' => $row['description'],
+            'created' => $row['created'],
+          ));
+
+            return $employee;
+        }
+
+        return;
     }
 
     public static function checkUsername($username)

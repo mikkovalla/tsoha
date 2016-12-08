@@ -57,7 +57,7 @@ class EmployerController extends BaseController
             if ($jobs) {
                 View::make('employer/employer.html', array('jobs' => $jobs, 'employer' => $employer, 'types' => $types));
             }
-            View::make('employer/employer.html', array('message' => 'Et ole vielä lisännyt yhtään duunia!'));
+            View::make('/employer/employer.html', array('message' => 'Et ole vielä lisännyt yhtään duunia!'));
         }
         Redirect::to('/employer/login_employer.html');
     }
@@ -91,6 +91,7 @@ class EmployerController extends BaseController
     {
         $employer = new Employer(array('id' => $id));
         $employer->deleteEmployer();
+        $_SESSION['employer'] = null;
 
         Redirect::to('/', array('byebye' => 'Tiedot poistettu palvelusta!'));
     }

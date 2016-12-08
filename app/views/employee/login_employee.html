@@ -1,20 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if message %}
+        <div class="notice success">
+            <i class="icon-ok icon-large"></i>
+            {{message}}
+            <a href="#close" class="icon-remove"></a>
+        </div>
+    {% endif %}
     <div class="col_6 column">
-        <form id="login_form_employee">
+        <form id="login_form_employee" method="post" action="{{base_path}}/login_employee">
             <fieldset>
                 <legend>Duunin Hakija kirjaudu</legend>
                 <p>
                     <label for="username_employee">Käyttäjätunnus</label>
-                    <input id="username_employee" name="username_employee" type="text"/>
+                    <input id="username_employee" name="username" type="text"/>
                 </p>
                 <p>
                     <label for="password_employee">Salasana</label>
-                    <input id="password_employee" name="password_employee" type="password"/>
+                    <input id="password_employee" name="password" type="password"/>
                 </p>
                 <p>
-                    <input class="orange" type="submit" value="Lähetä" method="post"/>
+                    <input class="orange" type="submit" value="Lähetä"/>
                 </p>
+                {% if error %}
+                    <div class="notice error">
+                        <i class="icon-remove-sign icon-large"></i>
+                        {{error}}
+                        <a href="#close" class="icon-remove"></a>
+                    </div>
+                {% endif %}
             </fieldset>
         </form>
     </div>

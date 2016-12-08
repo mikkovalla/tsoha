@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="col_5 column">
-        <form id="reg_form_employee">
+        <form id="reg_form_employee" method="post" action="{{base_path}}/register_employee">
             <fieldset>
                 <legend>Duunin hakija luo tili</legend>
                 <p>
@@ -25,15 +25,11 @@
                     <input id="password" name="password" type="password"/>
                 </p>
                 <p>
-                    <label for="password2">Salasana uudelleen</label>
-                    <input id="password2" name="password2" type="password"/>
-                </p>
-                <p>
                     <label for="employee_description">Esittely</label>
-                    <textarea id="employee_description" name="employee_description" rows="8" cols="40"></textarea>
+                    <textarea id="employee_description" name="description" rows="8" cols="40"></textarea>
                 </p>
                 <p>
-                    <input type="submit" value="Rekisteröidy" method="post" class="large orange"/>
+                    <input type="submit" class="large orange"/>
                 </p>
             </fieldset>
         </form>
