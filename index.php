@@ -18,9 +18,18 @@
   define('BASE_PATH', '/' . $base_folder);
 
   // Luodaan uusi tai palautetaan olemassaoleva sessio
+  /*if(session_id() == 'employer') {
+    session_start();
+  }
+
+  if(session_id() == 'employee') {
+    session_start();
+  }*/
+
   if(session_id() == '') {
     session_start();
   }
+
 
   // Asetetaan vastauksen Content-Type-otsake, jotta ääkköset näkyvät normaalisti
   header('Content-Type: text/html; charset=utf-8');

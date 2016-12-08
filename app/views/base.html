@@ -56,6 +56,18 @@
                                     Loggaa ulos</button>
                             </form>
                         </li>
+                    {% elseif employee_logged_in %}
+                        <li>
+                            <a href="{{base_path}}/employee/{{employee_logged_in.id}}">Omat sivusi
+                                {{employee_logged_in.first_name}}
+                                {{employee_logged_in.last_name}}</a>
+                        </li>
+                        <li class="right">
+                            <form name="logout" action="{{base_path}}/logout" method="post">
+                                <button type="submit">
+                                    Loggaa ulos</button>
+                            </form>
+                        </li>
                     {% else %}
                         <li>
                             <a href="{{base_path}}/jobs">Tsekkaa Duunit</a>

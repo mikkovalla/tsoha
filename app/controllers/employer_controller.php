@@ -46,7 +46,8 @@ class EmployerController extends BaseController
         ));
         $employer->newEmployer();
 
-        Redirect::to('/employer/login_employer.html', array('message' => 'Voit nyt kirjautua sisään!'));
+        $_SESSION['employer'] = $employer->id;
+        Redirect::to('/employer/employer.html', array('message' => 'Tervetuloa palveluun '.$employer->company_name.'!'));
     }
     public static function employer($id)
     {
@@ -55,7 +56,7 @@ class EmployerController extends BaseController
             $types = Type::allTypes();
             $jobs = Jobs::findByEmployer();
             if ($jobs) {
-                View::make('employer/employer.html', array('jobs' => $jobs, 'employer' => $employer, 'types' => $types));
+                View::make('/employer/employer.html', array('jobs' => $jobs, 'employer' => $employer, 'types' => $types));
             }
             View::make('/employer/employer.html', array('message' => 'Et ole vielä lisännyt yhtään duunia!'));
         }

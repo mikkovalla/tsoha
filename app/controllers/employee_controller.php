@@ -48,7 +48,8 @@ class EmployeeController extends BaseController
         ));
         $employee->newEmployee();
 
-        Redirect::to('/employee/login_employee.html', array('message' => 'Voit nyt kirjautua sisään!'));
+        $_SESSION['employee'] = $employee->id;
+        Redirect::to('/employee/employee.html', array('message' => 'Tervetuloa palveluun '.$employee->first_name.' '.$employee->last_name.'!'));
     }
     public static function employee($id)
     {
