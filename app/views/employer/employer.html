@@ -7,7 +7,7 @@
                     Muuta tietojasi</legend>
                 <p>
                     <label for="company">Yrityksen nimi</label>
-                    <input id="company" name="company_name" type="text" value="{{employer_logged_in.company_name}}"/>
+                    <input id="company" name="company_name" type="text" value="{{employer_logged_in.company_name}}" aria-describedby="name-format" required aria-required="true"/>
 
                 </p>
                 <p>
@@ -16,11 +16,11 @@
                 </p>
                 <p>
                     <label for="username_company">Käyttäjätunnus</label>
-                    <input id="username_company" name="username" type="text" placeholder=" {{employer_logged_in.username}} "/>
+                    <input id="username_company" name="username" type="text" placeholder=" {{employer_logged_in.username}} " readonly/>
                 </p>
                 <p>
                     <label for="password_company">Salasana</label>
-                    <input id="password_company" name="password" type="password" placeholder=" {{employer_logged_in.password}} "/>
+                    <input id="password_company" name="password" type="password" placeholder=" {{employer_logged_in.password}} " readonly/>
                 </p>
                 <p>
                     <label for="company_description">Yritys esittely</label>

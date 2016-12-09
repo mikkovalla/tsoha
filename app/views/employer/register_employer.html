@@ -6,23 +6,23 @@
                 <legend>Duunin tarjoaja luo tili</legend>
                 <p>
                     <label for="company">Yrityksen nimi</label>
-                    <input id="company" name="company_name" type="text"/>
+                    <input id="company" name="company_name" type="text" aria-describedby="name-format" required aria-required="true" min="1"/>
                 </p>
                 <p>
                     <label for="email_company">Sähköposti</label>
-                    <input id="email_company" name="email" type="email"/>
+                    <input id="email_company" name="email" type="email" required/>
                 </p>
                 <p>
                     <label for="username_company">Käyttäjätunnus</label>
-                    <input id="username_company" name="username" type="text"/>
+                    <input id="username_company" name="username" type="text" aria-describedby="name-format" required aria-required="true" pattern="[A-Za-z-0-9]+"/>
                 </p>
                 <p>
                     <label for="password_company">Salasana</label>
-                    <input id="password_company" name="password" type="password"/>
+                    <input id="password_company" name="password" type="password" aria-describedby="name-format" required aria-required="true" pattern="[A-Za-z-0-9]+"/>
                 </p>
                 <p>
                     <label for="company_description">Yritys esittely</label>
-                    <textarea id="company_description" name="company_description" rows="8" cols="40"></textarea>
+                    <textarea id="company_description" name="company_description" rows="8" cols="40" aria-describedby="name-format" required aria-required="true" pattern="[A-Za-z-0-9]+"></textarea>
                 </p>
                 <p>
                     <input type="submit" value="Rekisteröidy" class="large green"/>
