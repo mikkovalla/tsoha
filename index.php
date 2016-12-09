@@ -6,30 +6,21 @@
 
   // Selvitetään, missä kansiossa index.php on
   $script_name = $_SERVER['SCRIPT_NAME'];
-  $explode =  explode('/', $script_name);
+  $explode = explode('/', $script_name);
 
-  if($explode[1] == 'index.php'){
-    $base_folder = '';
-  }else{
-    $base_folder = $explode[1];
+  if ($explode[1] == 'index.php') {
+      $base_folder = '';
+  } else {
+      $base_folder = $explode[1];
   }
 
   // Määritetään sovelluksen juuripolulle vakio BASE_PATH
-  define('BASE_PATH', '/' . $base_folder);
+  define('BASE_PATH', '/'.$base_folder);
 
   // Luodaan uusi tai palautetaan olemassaoleva sessio
-  /*if(session_id() == 'employer') {
-    session_start();
-  }
-
-  if(session_id() == 'employee') {
-    session_start();
-  }*/
-
-  if(session_id() == '') {
-    session_start();
-  }
-
+  if (session_id() == '') {
+      session_start();
+    }
 
   // Asetetaan vastauksen Content-Type-otsake, jotta ääkköset näkyvät normaalisti
   header('Content-Type: text/html; charset=utf-8');
@@ -38,9 +29,9 @@
   require 'vendor/autoload.php';
 
   $routes = new \Slim\Slim();
-  $routes->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
+  $routes->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware());
 
-  $routes->get('/tietokantayhteys', function(){
+  $routes->get('/tietokantayhteys', function () {
     DB::test_connection();
   });
 

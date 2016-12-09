@@ -14,15 +14,8 @@
         // Asetetaan näkymään base_path-muuttuja index.php:ssa määritellyllä BASE_PATH vakiolla
         $content['base_path'] = BASE_PATH;
 
-        // Asetetaan näkymään kirjautunut employee, jos get_employee_logged_in-metodi on toteutettu
-        if (method_exists('BaseController', 'get_employee_logged_in')) {
-            $content['employee_logged_in'] = BaseController::get_employee_logged_in();
-        }
-
-        // Asetetaan näkymään kirjautunut employer, jos get_employer_logged_in-metodi on toteutettu
-        if (method_exists('BaseController', 'get_employer_logged_in')) {
-            $content['employer_logged_in'] = BaseController::get_employer_logged_in();
-        }
+        $content['employee_logged_in'] = BaseController::get_employee_logged_in();
+        $content['employer_logged_in'] = BaseController::get_employer_logged_in();
 
         // Tulostetaan Twig:n renderöimä näkymä
         echo $twig->render($view, $content);

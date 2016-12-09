@@ -3,6 +3,7 @@
 require 'app/models/jobs.php';
 require 'app/models/employer.php';
 require 'app/models/types.php';
+require 'app/models/employeeJobsApply.php';
 
 class EmployerController extends BaseController
 {
@@ -65,7 +66,7 @@ class EmployerController extends BaseController
 
     public static function logout()
     {
-        $_SESSION['employer'] = null;
+        session_destroy();
         Redirect::to('/', array('message' => 'Olet kirjautunut ulos'));
     }
 
@@ -92,7 +93,7 @@ class EmployerController extends BaseController
     {
         $employer = new Employer(array('id' => $id));
         $employer->deleteEmployer();
-        $_SESSION['employer'] = null;
+        session_destroy();
 
         Redirect::to('/', array('byebye' => 'Tiedot poistettu palvelusta!'));
     }

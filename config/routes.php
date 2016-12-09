@@ -26,8 +26,8 @@
     JobsController::index();
   });
 
-  $routes->get('/jobs', function () {
-    JobsController::index();
+  $routes->post('/jobs/:id/apply', function ($id) {
+    JobsController::apply($id);
   });
 
   $routes->post('/jobs/:id/delete', function ($id) {

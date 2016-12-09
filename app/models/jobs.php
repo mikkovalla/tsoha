@@ -53,6 +53,29 @@ class Jobs extends BaseModel
         return;
     }
 
+    public static function findOne($id)
+    {
+        $query = DB::connection()->prepare('SELECT * FROM Jobs WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+        if ($row) {
+            $jobs = new self(array(
+        'id' => $row['id'],
+        'category_id' => $row['category_id'],
+        'employer_id' => $row['employer_id'],
+        'type_id' => $row['type_id'],
+        'job_name' => $row['job_name'],
+        'description' => $row['description'],
+        'area' => $row['area'],
+        'created' => $row['created'],
+      ));
+
+            return $jobs->id;
+        }
+
+        return;
+    }
+
     public static function findByParam($keyword, $area, $category)
     {
     }

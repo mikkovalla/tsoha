@@ -4,6 +4,7 @@ require 'app/models/jobs.php';
 require 'app/models/employee.php';
 require 'app/models/employer.php';
 require 'app/models/types.php';
+require 'app/models/employeeJobsApply.php';
 
 class EmployeeController extends BaseController
 {
@@ -47,7 +48,6 @@ class EmployeeController extends BaseController
           'created' => date('Y-m-d'),
         ));
         $employee->newEmployee();
-
         $_SESSION['employee'] = $employee->id;
         Redirect::to('/employee/employee.html', array('message' => 'Tervetuloa palveluun '.$employee->first_name.' '.$employee->last_name.'!'));
     }
@@ -58,17 +58,17 @@ class EmployeeController extends BaseController
             $types = Type::allTypes();
             $jobs = Jobs::findByEmployer();
             $employers = Employer::allEmployers();
+            $appliedJobs = EmployeeJobsApply::all();
             if ($jobs) {
-                View::make('/employee/employee.html', array('jobs' => $jobs, 'employee' => $employee, 'types' => $types, 'employers' => $employers));
+                View::make('/employee/employee.html', array('jobs' => $jobs, 'employee' => $employee, 'types' => $types, 'employers' => $employers, 'appliedJobs' => $appliedJobs));
             }
-            View::make('/employee/employee.html', array('emp' => 'Et ole vielä hakenut yhtään duunia!'));
         }
         Redirect::to('/employee/login_employee.html');
     }
 
     public static function logout()
     {
-        $_SESSION['employee'] = null;
+        session_destroy();
         Redirect::to('/', array('message' => 'Olet kirjautunut ulos'));
     }
 
@@ -96,8 +96,9 @@ class EmployeeController extends BaseController
     {
         $employee = new Employee(array('id' => $id));
         $employee->deleteEmployee();
-        $_SESSION['employee'] = null;
+        session_destroy($_SESSION['employee']);
 
         Redirect::to('/', array('byebye' => 'Tiedot poistettu palvelusta!'));
     }
+
 }

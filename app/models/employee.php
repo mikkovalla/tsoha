@@ -8,6 +8,28 @@ class Employee extends BaseModel
         parent::__construct($attributes);
     }
 
+    public static function allEmployees()
+    {
+        $query = DB::connection()->prepare('SELECT * FROM Employee');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $jobs = array();
+        foreach ($rows as $row) {
+            $employee[] = new self(array(
+      'id' => $row['id'],
+      'first_name' => $row['first_name'],
+      'last_name' => $row['last_name'],
+      'email' => $row['email'],
+      'username' => $row['username'],
+      'password' => $row['password'],
+      'description' => $row['description'],
+      'created' => $row['created'],
+    ));
+        }
+
+        return $employee;
+    }
+
     public function newEmployee()
     {
         $query = DB::connection()->prepare(
