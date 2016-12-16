@@ -13,8 +13,8 @@ tsoha-tietokantasovellus
 4. Html Suunnittelu: [Suunnitelmat](https://github.com/mikkovalla/tsoha/tree/master/app/views/suunnitelmat) [Views kansio](https://github.com/mikkovalla/tsoha/tree/master/app/views)
 
 5. Käynnistys / Käyttöohje:
+
+ Luo itsellesi tunnukset alla olevien linkkien kautta, ja kokeile palvelun toimintoja.
  * Kirjautuminen työnantajana tapahtuu [täällä](http://mikvalla.users.cs.helsinki.fi/tsoha/login_employer)
- * Kirjautuminen toimii
- * työpaikan lisäys ja poisto ei vielä toimi
- - Käyttäjätunnus: osaajat
- - salasana: osaajat
+ * Kirjautuminen työnanhakijana tapahtuu [täällä](http://mikvalla.users.cs.helsinki.fi/tsoha/login_employee)
+ * Haku ei toimi
