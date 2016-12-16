@@ -78,6 +78,7 @@ class Jobs extends BaseModel
 
     public static function findByParam($keyword, $area, $category)
     {
+      #hakukenttien käyttöön tarkoitettu metodi
     }
 
     public static function findByEmployer()
