@@ -8,6 +8,59 @@ class Employee extends BaseModel
         parent::__construct($attributes);
     }
 
+    public function validate($first_name, $last_name, $email, $username, $password, $description)
+    {
+        $v = new Valitron\Validator(array(
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'email' => $email,
+        'username' => $username,
+        'password' => $password,
+        'description' => $description,
+      ));
+
+        if (isset($first_name)) {
+            $v->rule('required', 'first_name');
+            $v->rule('lengthMin', 'first_name', 2);
+            $v->rule('lengthMax', 'first_name', 30);
+            $v->rule('regex', 'first_name', '/^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ÄäÅåÖö]+(?<![_.])$/');
+        }
+        if (isset($last_name)) {
+            $v->rule('required', 'last_name');
+            $v->rule('lengthMin', 'last_name', 2);
+            $v->rule('lengthMax', 'last_name', 50);
+            $v->rule('regex', 'last_name', '/^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ÄäÅåÖö]+(?<![_.])$/');
+        }
+        if (isset($email)) {
+            $v->rule('required', 'email');
+            $v->rule('email', 'email');
+        }
+        if (isset($username)) {
+            $v->rule('required', 'username');
+            $v->rule('lengthMin', 'username', 4);
+            $v->rule('lengthMax', 'username', 20);
+            $v->rule('regex', 'username', '/^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ÄäÅåÖö]+(?<![_.])$/');
+        }
+        if (isset($password)) {
+            $v->rule('required', 'password');
+            $v->rule('lengthMin', 'password', 5);
+        }
+        if (isset($description)) {
+            $v->rule('lengthMin', 'description', 10);
+        }
+
+        $v->validate();
+        $errors = parent::formatErrors($v->errors());
+        if (isset($username) && self::checkUsername($username)) {
+            $errors[] = 'Käyttäjätunnus on jo olemassa!';
+        }
+        if (empty($errors)) {
+            return true;
+        } else {
+            return $errors;
+        }
+    }
+
     public static function allEmployees()
     {
         $query = DB::connection()->prepare('SELECT * FROM Employee');
@@ -133,10 +186,10 @@ class Employee extends BaseModel
     public static function checkUsername($username)
     {
         $query = DB::connection()->prepare(
-          'SELECT FROM Employee
+          'SELECT * FROM Employee
           WHERE username = :username
           LIMIT 1');
-        $query->execute(array());
+        $query->execute(array('username' => $username));
         $row = $query->fetch();
 
         if ($row) {

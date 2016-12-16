@@ -37,8 +37,10 @@ class EmployeeController extends BaseController
     public static function handle_register()
     {
         $params = $_POST;
+        $validate = Employee::validate($params['first_name'], $params['last_name'], $params['email'], $params['username'], $params['password'], $params['description']);
 
-        $employee = new Employee(array(
+        if (!is_array($validate)) {
+            $employee = new Employee(array(
           'first_name' => $params['first_name'],
           'last_name' => $params['last_name'],
           'email' => $params['email'],
@@ -47,9 +49,12 @@ class EmployeeController extends BaseController
           'description' => $params['description'],
           'created' => date('Y-m-d'),
         ));
-        $employee->newEmployee();
-        $_SESSION['employee'] = $employee->id;
-        Redirect::to('/employee/employee.html', array('message' => 'Tervetuloa palveluun '.$employee->first_name.' '.$employee->last_name.'!'));
+            $employee->newEmployee();
+            $_SESSION['employee'] = $employee->id;
+            Redirect::to('/employee/employee.html', array('message' => 'Tervetuloa palveluun '.$employee->first_name.' '.$employee->last_name.'!'));
+        } else {
+            View::make('/employee/register_employee.html', array('message' => $validate, 'first_name' => $params['first_name'], 'last_name' => $params['last_name'], 'email' => $params['email'], 'username' => $params['username'], 'password' => $params['password'], 'description' => $params['description']));
+        }
     }
     public static function employee($id)
     {
@@ -76,7 +81,10 @@ class EmployeeController extends BaseController
     {
         $params = $_POST;
 
-        $attributes = array(
+        $validate = Employee::validate($params['first_name'], $params['last_name'], $params['email'], null, null, $params['description']);
+
+        if (!is_array($validate)) {
+            $attributes = array(
         'id' => $id,
         'first_name' => $params['first_name'],
         'last_name' => $params['last_name'],
@@ -85,11 +93,14 @@ class EmployeeController extends BaseController
         'password' => $params['password'],
         'description' => $params['description'],
       );
-        $employee = new Employee($attributes);
+            $employee = new Employee($attributes);
 
-        $employee->updateEmployee();
+            $employee->updateEmployee();
 
-        Redirect::to('/employee/employee.html', array('message' => 'Tiedot päivitetty!'));
+            Redirect::to('/employee/employee.html', array('message' => 'Tiedot päivitetty!'));
+        } else {
+            Redirect::to('/employee/employee.html', array('message' => 'Syötit virheellisiä tietoja!'));
+        }
     }
 
     public static function delete($id)
@@ -100,5 +111,4 @@ class EmployeeController extends BaseController
 
         Redirect::to('/', array('byebye' => 'Tiedot poistettu palvelusta!'));
     }
-
 }
