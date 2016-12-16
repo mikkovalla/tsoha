@@ -36,8 +36,13 @@ class EmployerController extends BaseController
     public static function handle_register()
     {
         $params = $_POST;
+        $validate = Employer::validate($params['company_name'], $params['email'], $params['username'], $params['password'], $params['company_description']);
 
-        $employer = new Employer(array(
+        if (Employer::checkUsername($params['username'])) {
+            View::make('/employer/register_employer.html', array('message' => 'Käyttäjätunnus on jo varattu!!!'));
+        }
+        if (!is_array($validate)) {
+            $employer = new Employer(array(
           'company_name' => $params['company_name'],
           'email' => $params['email'],
           'username' => $params['username'],
@@ -45,10 +50,13 @@ class EmployerController extends BaseController
           'company_description' => $params['company_description'],
           'created' => date('Y-m-d'),
         ));
-        $employer->newEmployer();
+            $employer->newEmployer();
 
-        $_SESSION['employer'] = $employer->id;
-        Redirect::to('/employer/employer.html', array('message' => 'Tervetuloa palveluun '.$employer->company_name.'!'));
+            $_SESSION['employer'] = $employer->id;
+            Redirect::to('/employer/employer.html', array('message' => 'Tervetuloa palveluun '.$employer->company_name.'!'));
+        } else {
+            View::make('/employer/register_employer.html', array('message' => 'Syötit väärää tietoa!!!'));
+        }
     }
     public static function employer($id)
     {
@@ -73,8 +81,10 @@ class EmployerController extends BaseController
     public static function update($id)
     {
         $params = $_POST;
+        $validate = Employer::validate($params['company_name'], $params['email'], null, null, $params['company_description']);
 
-        $attributes = array(
+        if (!is_array($validate)) {
+            $attributes = array(
         'id' => $id,
         'company_name' => $params['company_name'],
         'email' => $params['email'],
@@ -82,11 +92,14 @@ class EmployerController extends BaseController
         'password' => $params['password'],
         'company_description' => $params['company_description'],
       );
-        $employer = new Employer($attributes);
+            $employer = new Employer($attributes);
 
-        $employer->updateEmployer();
+            $employer->updateEmployer();
 
-        Redirect::to('/employer/employer.html', array('message' => 'Tiedot päivitetty!'));
+            Redirect::to('/employer/employer.html', array('message' => 'Tiedot päivitetty!'));
+        } else {
+            Redirect::to('/employer/employer.html', array('message' => 'Syötit väärää tietoa!!!'));
+        }
     }
 
     public static function delete($id)

@@ -39,6 +39,9 @@ class EmployeeController extends BaseController
         $params = $_POST;
         $validate = Employee::validate($params['first_name'], $params['last_name'], $params['email'], $params['username'], $params['password'], $params['description']);
 
+        if (Employee::checkUsername($params['username'])) {
+            View::make('/employee/register_employee.html', array('message' => 'Käyttäjätunnus varattu!'));
+        }
         if (!is_array($validate)) {
             $employee = new Employee(array(
           'first_name' => $params['first_name'],
@@ -53,7 +56,7 @@ class EmployeeController extends BaseController
             $_SESSION['employee'] = $employee->id;
             Redirect::to('/employee/employee.html', array('message' => 'Tervetuloa palveluun '.$employee->first_name.' '.$employee->last_name.'!'));
         } else {
-            View::make('/employee/register_employee.html', array('message' => $validate, 'first_name' => $params['first_name'], 'last_name' => $params['last_name'], 'email' => $params['email'], 'username' => $params['username'], 'password' => $params['password'], 'description' => $params['description']));
+            View::make('/employee/register_employee.html', array('message' => 'Tarkista tiedot!'));
         }
     }
     public static function employee($id)
@@ -107,7 +110,7 @@ class EmployeeController extends BaseController
     {
         $employee = new Employee(array('id' => $id));
         $employee->deleteEmployee();
-        session_destroy($_SESSION['employee']);
+        session_destroy();
 
         Redirect::to('/', array('byebye' => 'Tiedot poistettu palvelusta!'));
     }

@@ -19,45 +19,32 @@ class Employee extends BaseModel
         'description' => $description,
       ));
 
-        if (isset($first_name)) {
-            $v->rule('required', 'first_name');
-            $v->rule('lengthMin', 'first_name', 2);
-            $v->rule('lengthMax', 'first_name', 30);
-            $v->rule('regex', 'first_name', '/^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ÄäÅåÖö]+(?<![_.])$/');
-        }
-        if (isset($last_name)) {
-            $v->rule('required', 'last_name');
-            $v->rule('lengthMin', 'last_name', 2);
-            $v->rule('lengthMax', 'last_name', 50);
-            $v->rule('regex', 'last_name', '/^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ÄäÅåÖö]+(?<![_.])$/');
-        }
-        if (isset($email)) {
-            $v->rule('required', 'email');
-            $v->rule('email', 'email');
-        }
+        $v->rule('required', 'first_name');
+        $v->rule('lengthMin', 'first_name', 2);
+        $v->rule('lengthMax', 'first_name', 30);
+        $v->rule('required', 'last_name');
+        $v->rule('lengthMin', 'last_name', 2);
+        $v->rule('lengthMax', 'last_name', 50);
+        $v->rule('required', 'email');
+        $v->rule('email', 'email');
+        $v->rule('required', 'description');
+        $v->rule('lengthMin', 'description', 10);
+
         if (isset($username)) {
             $v->rule('required', 'username');
             $v->rule('lengthMin', 'username', 4);
             $v->rule('lengthMax', 'username', 20);
-            $v->rule('regex', 'username', '/^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ÄäÅåÖö]+(?<![_.])$/');
         }
         if (isset($password)) {
             $v->rule('required', 'password');
             $v->rule('lengthMin', 'password', 5);
         }
-        if (isset($description)) {
-            $v->rule('lengthMin', 'description', 10);
-        }
 
-        $v->validate();
-        $errors = parent::formatErrors($v->errors());
-        if (isset($username) && self::checkUsername($username)) {
-            $errors[] = 'Käyttäjätunnus on jo olemassa!';
-        }
-        if (empty($errors)) {
+        $errors[] = '';
+        if ($v->validate()) {
             return true;
         } else {
-            return $errors;
+            return $errors = $v->errors();
         }
     }
 

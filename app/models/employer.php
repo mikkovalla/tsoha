@@ -11,6 +11,40 @@ class Employer extends BaseModel
         parent::__construct($attributes);
     }
 
+    public function validate($company_name, $email, $username, $password, $company_description)
+    {
+        $v = new Valitron\Validator(array(
+        'company_name' => $company_name,
+        'email' => $email,
+        'username' => $username,
+        'password' => $password,
+        'company_description' => $company_description,
+      ));
+        $v->rule('required', 'company_name');
+        $v->rule('lengthMin', 'company_name', 1);
+        $v->rule('lengthMax', 'company_name', 50);
+        $v->rule('required', 'email');
+        $v->rule('email', 'email');
+        $v->rule('required', 'company_description');
+        $v->rule('lengthMin', 'company_description', 10);
+
+        if (isset($username)) {
+            $v->rule('required', 'username');
+            $v->rule('lengthMin', 'username', 4);
+            $v->rule('lengthMax', 'username', 20);
+        }
+        if (isset($password)) {
+            $v->rule('required', 'password');
+            $v->rule('lengthMin', 'password', 5);
+        }
+        $errors[] = '';
+        if ($v->validate()) {
+            return true;
+        } else {
+            return $errors = $v->errors();
+        }
+    }
+
     public static function allEmployers()
     {
         $query = DB::connection()->prepare('SELECT * FROM Employer');
@@ -69,7 +103,7 @@ class Employer extends BaseModel
         'username' => $this->username,
         'password' => $this->password,
         'company_description' => $this->company_description,
-        'created' => $this->created));
+        'created' => $this->created, ));
 
         $row = $query->fetch();
         $this->id = $row['id'];
@@ -88,7 +122,7 @@ class Employer extends BaseModel
       'company_name' => $this->company_name,
       'email' => $this->email,
       'company_description' => $this->company_description,
-      'id' => $this->id
+      'id' => $this->id,
       ));
 
         return true;
@@ -125,5 +159,21 @@ class Employer extends BaseModel
         }
 
         return;
+    }
+
+    public static function checkUsername($username)
+    {
+        $query = DB::connection()->prepare(
+          'SELECT * FROM Employer
+          WHERE username = :username
+          LIMIT 1');
+        $query->execute(array('username' => $username));
+        $row = $query->fetch();
+
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
