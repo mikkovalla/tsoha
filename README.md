@@ -15,6 +15,6 @@ tsoha-tietokantasovellus
 5. Käynnistys / Käyttöohje:
 
  Luo itsellesi tunnukset alla olevien linkkien kautta, ja kokeile palvelun toimintoja.
- * Kirjautuminen työnantajana tapahtuu [täällä](http://mikvalla.users.cs.helsinki.fi/tsoha/login_employer)
- * Kirjautuminen työnanhakijana tapahtuu [täällä](http://mikvalla.users.cs.helsinki.fi/tsoha/login_employee)
+ * Rekisteröinti työnantajana tapahtuu [täällä](http://mikvalla.users.cs.helsinki.fi/tsoha/register_employer)
+ * Rekisteröinti työnanhakijana tapahtuu [täällä](http://mikvalla.users.cs.helsinki.fi/tsoha/register_employee)
  * Haku ei toimi
